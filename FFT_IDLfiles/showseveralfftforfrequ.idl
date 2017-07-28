@@ -1,0 +1,163 @@
+!p.font=1;
+!p.charthick=2.0;
+!p.charsize=1.5;
+
+
+pi=3.1415926;
+
+noofoutputs=long(121440);
+noofcolumns=long(7)
+nooffrequs=long(50);
+
+fromenerg=-0.4
+toenerg=0.0
+
+
+
+deltafrequ=0.002;
+frequnull=0.11;
+
+frequhat=lindgen(nooffrequs);
+
+frequhat=frequnull+deltafrequ*frequhat;
+
+
+tab=dblarr(noofcolumns,noofoutputs*nooffrequs);
+
+filename="wfatgpoi.dat...H";
+
+noofcolors=64;
+loadct, 4, ncolors=noofcolors;
+colors=noofcolors-1-lindgen(noofcolors)
+
+
+openr, l, filename, /get_lun;
+readf, l, tab;
+close, /all;
+
+
+tabb=dblarr(noofcolumns,noofoutputs,nooffrequs);
+finalspec=dblarr(noofoutputs,nooffrequs);
+finalspeconlyodd=dblarr(noofoutputs,nooffrequs);
+finalspeconlyeven=dblarr(noofoutputs,nooffrequs);
+
+
+for k=long(0),noofoutputs-1 do begin
+for j=long(0),nooffrequs-1 do begin
+
+  tabb(*,k,j)=tab(*,j*noofoutputs+k)
+endfor
+endfor
+
+
+set_plot, "ps";
+device, filename="tmp.ps", /color, bits=8;
+
+
+for j=long(0),nooffrequs-1 do begin
+
+t=tabb(0,*,j);
+a=tabb(3,*,j);
+b=tabb(4,*,j);
+aa=tabb(5,*,j);
+bb=tabb(6,*,j);
+
+
+cwf=dcomplex(a,b)
+cwfex=dcomplex(aa,bb)
+
+  ;; plot, t,a
+
+
+  fftresult=fft(hanning(noofoutputs)*cwf, /double, /inverse)
+  ; fftresult=fft(cwf, /double, /inverse)
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+  plot, frequ,fftresultIII, /ylog, xrange=[fromenerg,toenerg], xstyle=1
+
+      finalspec(*,j)=fftresultIII
+      finalspeconlyeven(*,j)=fftresultIII
+
+
+      ;; and now the correlation with the excited state
+
+  fftresult=fft(hanning(noofoutputs)*cwfex, /double, /inverse)
+
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+  oplot, frequ,fftresultIII, color=30
+
+
+      finalspeconlyodd(*,j)=fftresultIII
+      finalspec(*,j)=finalspec(*,j)+fftresultIII
+
+endfor
+
+
+
+maxfinalspec=max(finalspec)
+maxfinalspeconlyodd=max(finalspeconlyodd)
+maxfinalspeconlyeven=max(finalspeconlyeven)
+
+finalspec=finalspec/maxfinalspec
+finalspeconlyodd=finalspeconlyodd/maxfinalspeconlyodd
+finalspeconlyeven=finalspeconlyeven/maxfinalspeconlyeven
+
+maxalogfinalspec=max(alog10(finalspec));
+  orderofmagn=6
+  levelsforlogfinalspec=lindgen(noofcolors)
+  levelsforlogfinalspec=levelsforlogfinalspec/(1.0*(noofcolors-1))
+  levelsforlogfinalspec=maxalogfinalspec-orderofmagn+orderofmagn*levelsforlogfinalspec
+
+
+    contour, transpose(alog10(finalspec)),frequhat,frequ, levels=levelsforlogfinalspec, c_colors=colors, /fill, /closed,pos=[0.15,0.15,0.85,0.98], ytitle='Energy (a.u.)', yrange=[fromenerg,toenerg], xstyle=1, ystyle=1
+
+    ;    oplot, frequ, -0.085-frequ, line=1, thick=2
+	   ;    oplot, frequ, -0.243+frequ, line=2, thick=2
+
+colorbar, ncolors=noofcolors, maxrange=levelsforlogfinalspec(0), minrange=levelsforlogfinalspec(noofcolors-1), position=[0.95,0.15,0.98,0.98], /vertical, format='(D8.2)'
+
+
+
+
+    contour, transpose(alog10(finalspeconlyeven)),frequhat,frequ, levels=levelsforlogfinalspec, c_colors=colors, /fill, /closed,pos=[0.15,0.15,0.85,0.9], ytitle='Energy (a.u.)', yrange=[fromenerg,toenerg], xstyle=1, ystyle=1, title='even'
+
+colorbar, ncolors=noofcolors, maxrange=levelsforlogfinalspec(0), minrange=levelsforlogfinalspec(noofcolors-1), position=[0.95,0.15,0.98,0.98], /vertical, format='(D8.2)'
+
+
+    contour, transpose(alog10(finalspeconlyodd)),frequhat,frequ, levels=levelsforlogfinalspec, c_colors=colors, /fill, /closed,pos=[0.15,0.15,0.85,0.9], ytitle='Energy (a.u.)', yrange=[fromenerg,toenerg], xstyle=1, ystyle=1, title='odd'
+
+colorbar, ncolors=noofcolors, maxrange=levelsforlogfinalspec(0), minrange=levelsforlogfinalspec(noofcolors-1), position=[0.95,0.15,0.98,0.98], /vertical, format='(D8.2)'
+
+
+  ; plots, [-0.25,-0.25],[1e-10,1e10]
+
+device, /close;
+set_plot, "x";
+end

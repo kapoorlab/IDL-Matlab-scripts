@@ -1,0 +1,79 @@
+!p.font=1;
+!p.charthick=2.0;
+!p.charsize=1.5;
+
+pi=3.1415926;
+imagi=complex(0.0,1.0)
+
+deltax=0.1;
+noofx=long(1000/2);
+
+nooftargetenergs=long(10);
+deltatargetenergs=0.002;
+targetenergnull=-0.18;
+targetenergy=lindgen(nooftargetenergs);
+targetenergy=targetenergy*deltatargetenergs+targetenergnull
+
+nooflines=long(noofx*nooftargetenergs);
+noofcolumns=long(2);
+
+noofcolors=50;
+loadct, 5, ncolors=noofcolors;
+colors=noofcolors-1-lindgen(noofcolors)
+
+set_plot, "ps";
+device, filename="tmp.ps", /color, bits=8;
+
+
+x=lindgen(noofx);
+x=x-0.5*noofx;
+x=x*deltax;
+
+
+wfel=complexarr(nooftargetenergs,noofx);
+
+
+filename='KHwf.dat';
+tab=dblarr(noofcolumns,nooflines);
+
+
+ openr, l, filename, /get_lun;
+ readf, l, tab;
+ close, /all;
+
+
+
+
+for j=long(0),noofx-1 do begin
+for k=long(0),nooftargetenergs-1 do begin
+  wfel(k,j)=complex(tab(0,k*noofx+j),tab(1,k*noofx+j));
+endfor
+endfor
+
+
+
+
+elecprob=abs(wfel)^2;
+
+
+
+
+for k=long(0),nooftargetenergs-1 do begin
+
+
+  normwf=total(abs(wfel(k,*))^2)*deltax
+
+
+  argument=atan(imaginary(wfel(k,*))/real_part(wfel(k,*)))
+
+
+
+  plot, x,real_part(exp(-imagi*argument)*wfel(k,*))/sqrt(normwf), xstyle=1, ystyle=3, title=targetenergy(k)
+  oplot,  x,imaginary(exp(-imagi*argument)*wfel(k,*))/sqrt(normwf)
+endfor
+
+
+
+device, /close;
+set_plot, "x";
+end

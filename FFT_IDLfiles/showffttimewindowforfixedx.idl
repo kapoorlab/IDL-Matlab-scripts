@@ -1,0 +1,170 @@
+!p.font=2;
+!p.charthick=2.5;
+!p.charsize=2;
+;;!y.ticks=1
+;;!y.tickv=3
+pi=3.1415926;
+
+
+pi=3.1415926;
+
+noofoutputs=long(80000);
+noofcolumns=long(13)
+
+tab=dblarr(noofcolumns,noofoutputs);
+
+filename="wfatgpoilghydrogen.dat";
+
+noofcolors=64;
+loadct, 4, ncolors=noofcolors;
+colors=noofcolors-1-lindgen(noofcolors)
+
+
+openr, l, filename, /get_lun;
+readf, l, tab;
+close, /all;
+
+set_plot, "ps";
+device, filename="ATI_hydrogen.ps", /color, bits=8;
+
+
+t=tab(0,*);
+a=tab(1,*);
+b=tab(2,*);
+c=tab(1,*);
+d=tab(2,*);
+
+cwf=dcomplex(a,b)
+cwfx=dcomplex(c,d)
+
+
+
+fromenerg=0.0
+toenerg=10
+
+
+
+nooftimewindows=long(100)
+  windowwidth=long(59500)
+starttimeindex=15000
+finaltimeindex=noofoutputs-1-windowwidth
+
+
+  finalspec=dblarr(nooftimewindows,windowwidth) 
+ finalspec2=dblarr(nooftimewindows,windowwidth) 
+  tarray=dblarr(nooftimewindows)
+
+for  k=long(0),nooftimewindows-1 do begin
+
+  tstartindex=starttimeindex+k*(finaltimeindex-starttimeindex)/(1.0*nooftimewindows);
+  tstart=t(tstartindex);
+
+tarray(k)=tstart;
+
+  tendindex=tstartindex+windowwidth;
+  tend=t(tendindex);
+
+fftresult=fft(hanning(windowwidth)*cwf(tstartindex:tendindex), /double, /inverse)
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(windowwidth)
+frequ=frequ-windowwidth/2
+
+frequ=(2*3.1415926/(t(tendindex)-t(tstartindex)))*frequ
+
+
+fftresultIII=dblarr(windowwidth)
+
+fftresultIII(windowwidth/2:windowwidth-1)=fftresultII(0:windowwidth/2-1)
+fftresultIII(0:windowwidth/2-1)=fftresultII(windowwidth/2:windowwidth-1)
+
+  finalspec(k,*)= fftresultIII
+
+
+
+fftresult2=fft(hanning(windowwidth)*cwfx(tstartindex:tendindex), /double, /inverse)
+
+fftresultII2=fftresult2*conj(fftresult2)
+
+frequ=lindgen(windowwidth)
+frequ=frequ-windowwidth/2
+
+frequ=(2*3.1415926/(t(tendindex)-t(tstartindex)))*frequ
+
+
+fftresultIII2=dblarr(windowwidth)
+
+fftresultIII2(windowwidth/2:windowwidth-1)=fftresultII2(0:windowwidth/2-1)
+fftresultIII2(0:windowwidth/2-1)=fftresultII2(windowwidth/2:windowwidth-1)
+
+  finalspec2(k,*)= fftresultIII2
+
+
+
+
+
+endfor
+
+
+maxfinalspec=max(finalspec)
+
+finalspec=finalspec;;/maxfinalspec;
+
+maxalogfinalspec=max(alog10(finalspec));
+  orderofmagn=6
+  levelsforlogfinalspec=lindgen(noofcolors)
+  levelsforlogfinalspec=levelsforlogfinalspec/(1.0*(noofcolors-1))
+  levelsforlogfinalspec=maxalogfinalspec-orderofmagn+orderofmagn*levelsforlogfinalspec
+
+
+    contour, alog10(finalspec),tarray,frequ, levels=levelsforlogfinalspec, c_colors=colors, /fill, /closed,pos=[0.15,0.15,0.85,0.98],  yrange=[fromenerg,toenerg], xstyle=1, ystyle=1
+
+
+
+colorbar, ncolors=noofcolors, maxrange=levelsforlogfinalspec(0), minrange=levelsforlogfinalspec(noofcolors-1), position=[0.95,0.15,0.98,0.98], /vertical, format='(D8.2)'
+
+   ;; contour, alog10(finalspec),tarray,frequ, levels=levelsforlogfinalspec, c_colors=colors, /fill, /closed,pos=[0.15,0.15,0.85,0.98],  yrange=[-1,1], xstyle=1, ystyle=1
+
+
+
+;;colorbar, ncolors=noofcolors, maxrange=levelsforlogfinalspec(0), minrange=levelsforlogfinalspec(noofcolors-1), position=[0.95,0.15,0.98,0.98], /vertical, format='(D8.2)'
+
+
+maxfinalspec2=max(finalspec2)
+
+finalspec2=finalspec2/maxfinalspec2;
+
+maxalogfinalspec2=max(alog10(finalspec2));
+  orderofmagn=6
+  levelsforlogfinalspec2=lindgen(noofcolors)
+  levelsforlogfinalspec2=levelsforlogfinalspec2/(1.0*(noofcolors-1))
+  levelsforlogfinalspec2=maxalogfinalspec2-orderofmagn+orderofmagn*levelsforlogfinalspec2
+
+
+   ;;contour, alog10(finalspec2),tarray,frequ, levels=levelsforlogfinalspec2, c_colors=colors, /fill, /closed,pos=[0.15,0.15,0.85,0.98], ytitle='Energy (a.u.)', xtitle='Time (a.u.) (Length gauge)', yrange=[fromenerg,toenerg], xstyle=1, ystyle=1
+
+
+
+;;colorbar, ncolors=noofcolors, maxrange=levelsforlogfinalspec2(0), minrange=levelsforlogfinalspec2(noofcolors-1), position=[0.95,0.15,0.98,0.98], /vertical, format='(D8.2)'
+ 
+ plot, frequ, finalspec(nooftimewindows-1,*), xrange=[0,8],/ylog
+ 
+ 
+ 
+  ;;  plot, frequ, finalspec2(nooftimewindows-1,*),color=10,linestyle=2, /ylog, xrange=[0,-3],title="velocity gau e"
+
+ ;;contour, alog10(finalspec),tarray,frequ, levels=levelsforlogfinalspec, c_colors=colors, /fill, /closed,pos=[0.15,0.15,0.85,0.98], ytitle='Energy (a.u.)', xtitle='Time (a.u.) (Length gauge)', yrange=[0,5], xstyle=1, ystyle=					1
+
+;;colorbar, ncolors=noofcolors, maxrange=levelsforlogfinalspec(0), minrange=levelsforlogfinalspec(noofcolors-1), position=[0.95,0.15,0.98,0.98], /vertical, format='(D8.2)'
+
+;;contour, alog10(finalspec2),tarray,frequ, levels=levelsforlogfinalspec2, c_colors=colors, /fill, /closed,pos=[0.15,0.15,0.85,0.98], ytitle='Energy (a.u.)', xtitle='Time (a.u.) (Velocity gauge)', yrange=[0,5], xstyle=1, ystyle=1
+;;colorbar, ncolors=noofcolors, maxrange=levelsforlogfinalspec2(0), minrange=levelsforlogfinalspec2(noofcolors-1), position=[0.95,0.15,0.98,0.98], /vertical, format='(D8.2)'
+
+
+
+
+
+device, /close;
+set_plot, "x";
+end

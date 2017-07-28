@@ -1,0 +1,106 @@
+!p.font=1;
+!p.charthick=2.0;
+!p.charsize=1.5;
+
+
+pi=3.1415926;
+
+noofoutputs=long(37680)
+noofcolumns=long(7)
+fromenerg=-0.5
+toenerg=-0.45
+
+tab=dblarr(noofcolumns,noofoutputs);
+
+filename="wfatgpoi0.1.dat";
+
+noofcolors=64;
+loadct, 4, ncolors=noofcolors;
+colors=noofcolors-1-lindgen(noofcolors)
+
+
+openr, l, filename, /get_lun;
+readf, l, tab;
+close, /all;
+
+set_plot, "ps";
+device, filename="tmp0.1.ps", /color, bits=8;
+
+t=tab(0,*);
+a=tab(3,*);
+b=tab(4,*);
+aa=tab(5,*);
+bb=tab(6,*);
+cwf=dcomplex(a,b)
+cwfex=dcomplex(aa,bb)
+plot, t,a
+
+
+  fftresult=fft(hanning(noofoutputs)*cwf, /double, /inverse)
+      ;;   fftresult=fft(cwf, /double, /inverse)
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+fftresultIIII=complexarr(noofoutputs)
+
+
+ 
+fftresultIIII=complexarr(noofoutputs)
+
+fftresultIIII(noofoutputs/2:noofoutputs-1)=fftresult(0:noofoutputs/2-1)
+fftresultIIII(0:noofoutputs/2-1)=fftresult(noofoutputs/2:noofoutputs-1)
+
+      ;; plot, frequ,((real_part(fftresultIIII))),  xrange=[fromenerg,toenerg], xstyle=1, xticklen=0.2,xgridstyle=3,ygridstyle=3     
+
+  plot, frequ,fftresultIII, xrange=[-0.5,-0], xstyle=1, ystyle=1
+
+  ; plots, [-0.25,-0.25],[1e-10,1e10]
+  fftresult=fft(hanning(noofoutputs)*cwfex, /double, /inverse)
+  ; fftresult=fft(cwf, /double, /inverse)
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+fftresultIIII=complexarr(noofoutputs)
+
+
+
+fftresultIIII=complexarr(noofoutputs)
+
+fftresultIIII(noofoutputs/2:noofoutputs-1)=fftresult(0:noofoutputs/2-1)
+fftresultIIII(0:noofoutputs/2-1)=fftresult(noofoutputs/2:noofoutputs-1)
+
+      ;;plot, frequ,sqrt((real_part(fftresultIIII))^2)
+
+ plot, frequ,sqrt((real_part(fftresultIIII))^2),color=20,  xrange=[fromenerg,toenerg], xstyle=1, xticklen=0.2,xgridstyle=3,ygridstyle=3
+
+
+
+
+
+device, /close;
+set_plot, "x";
+end

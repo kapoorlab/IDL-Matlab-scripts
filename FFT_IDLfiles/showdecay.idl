@@ -1,0 +1,168 @@
+
+!p.font=1;
+!p.charthick=2.0;
+!p.charsize=1.5;
+
+
+pi=3.1415926;
+
+noofoutputs=long(40000)
+noofcolumns=long(7)
+fromenerg=-0.5
+toenerg=-00
+
+tab=dblarr(noofcolumns,noofoutputs);
+
+filename="wfatgpoi0.2.dat";
+
+noofcolors=64;
+loadct, 4, ncolors=noofcolors;
+colors=noofcolors-1-lindgen(noofcolors)
+
+
+openr, l, filename, /get_lun;
+readf, l, tab;
+close, /all;
+imagi=complex(0.0,1.0)
+
+deltax=0.2;
+noofx=long(500);
+
+
+x=lindgen(noofx);
+x=x-0.5*noofx;
+x=x*deltax;
+
+deltat=0.25*deltax;
+
+t=lindgen(noofoutputs);
+t=t*deltat;
+
+
+
+set_plot, "ps";
+device, filename="tmp0.2.ps", /color, bits=8;
+
+t=tab(0,*);
+a=tab(3,*);
+b=tab(4,*);
+;;aa=tab(5,*);
+;;bb=tab(6,*);
+cwf=dcomplex(a,b)
+  ;;cwfex=dcomplex(aa,bb)
+plot, t,a
+
+
+  ;; fftresult=fft(hanning(noofoutputs)*cwf, /double, /inverse)
+       fftresult=fft(cwf, /double, /inverse)
+
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+
+fftresultIIII=complexarr(noofoutputs)
+
+
+
+fftresultIIII(noofoutputs/2:noofoutputs-1)=fftresult(0:noofoutputs/2-1)
+fftresultIIII(0:noofoutputs/2-1)=fftresult(noofoutputs/2:noofoutputs-1)
+
+      plot, frequ,((real_part(fftresultIIII)))*deltat,  xrange=[fromenerg,toenerg], xstyle=1    
+
+       energypeak=(((real_part(fftresultIIII)))*deltat )
+
+
+nooftargetenergs=long(150);
+deltatargetenergs=0.0001;
+targetenergnull=-0.5;
+targetenergy=lindgen(nooftargetenergs);
+targetenergy=targetenergy*deltatargetenergs+targetenergnull
+
+nooflines2=long(noofx*nooftargetenergs);
+
+noofcolumns2=long(2);
+wfel=complexarr(nooftargetenergs,noofx);
+
+
+filename2='floquwf0.2.dat';
+tab2=dblarr(noofcolumns2,nooflines2);
+
+
+ openr, l, filename2, /get_lun;
+ readf, l, tab2;
+ close, /all;
+
+
+for j=long(0),noofx-1 do begin
+for k=long(0),nooftargetenergs-1 do begin
+  wfel(k,j)=complex(tab2(0,k*noofx+j),tab2(1,k*noofx+j));
+endfor
+endfor
+
+
+
+	  argument=dblarr(nooftargetenergs,noofx)
+	  modulus=dblarr(nooftargetenergs,noofx)
+	  real=dblarr(nooftargetenergs)
+norm=dblarr(nooftargetenergs)
+  polar=dblarr(nooftargetenergs,noofx)
+	 
+for k=long(0),nooftargetenergs-1 do begin
+for j=long(0),noofx-1 do begin
+
+  norm(k)=norm(k)+(conj(wfel(k,j))*wfel(k,j))*deltax
+endfor
+endfor
+for k=long(0),nooftargetenergs-1 do begin
+for j=long(0),noofx-1 do begin
+	 
+	  argument(k,j)=atan(imaginary(wfel(k,j))/real_part(wfel(k,j)))
+  modulus(k,j)=sqrt(conj(wfel(k,j))*wfel(k,j))/norm(k)
+
+
+
+
+endfor
+endfor
+  
+for k=long(0),nooftargetenergs-1 do begin
+for j=long(0),noofx-1 do begin
+
+  polar(k,j)=wfel(k,j)*exp(-imagi*argument(k,j))
+
+endfor
+endfor
+	 
+for k=long(0),nooftargetenergs-1 do begin
+for j=long(0),noofx-1 do begin
+
+	  real(k)=real(k)+modulus(k,j)*deltax
+endfor
+endfor 
+
+ 
+  shade_surf,modulus,targetenergy,x
+  ;;;  plot,targetenergy,argument
+ 
+	 print,0.5*sqrt((max(modulus)/max(energypeak)))
+	 print, max(norm)
+	 print,sqrt(max(norm))
+	 print,max(sqrt(norm))	 
+for k=long(0),nooftargetenergs-1 do begin
+for j=long(0),noofx-1 do begin
+
+	  real(k)=real(k)+modulus(k,j)*deltax
+endfor
+endfor 
+
+	  for k=long(0),nooftargetenergs-1 do begin
+	   plot, x,abs(wfel(k,*))^2,  xstyle=1, ystyle=1, title=targetenergy(k)
+	       endfor
+
+device, /close;
+set_plot, "x";
+end

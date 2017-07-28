@@ -1,0 +1,87 @@
+!p.charsize=1.5
+!p.font=1
+
+pi=3.1415926;
+
+noofoutputs=long(10000);
+noofcolumns=long(2)
+noofalphas=long(20);
+
+fromenerg=0
+toenerg=8
+
+
+deltaalpha=0.3;
+alphanull=1.2;
+
+alphahat=lindgen(noofalphas);
+
+alphahat=alphanull+deltaalpha*alphahat;
+
+
+tab=dblarr(noofcolumns,noofoutputs*noofalphas);
+
+filename="dipole_x.dat";
+
+noofcolors=64;
+loadct, 4, ncolors=noofcolors;
+colors=noofcolors-1-lindgen(noofcolors)
+
+
+openr, l, filename, /get_lun;
+readf, l, tab;
+close, /all;
+
+
+tabb=dblarr(noofcolumns,noofoutputs,noofalphas); 
+finalspec=dblarr(noofoutputs,noofalphas);
+finalspeconlyodd=dblarr(noofoutputs,noofalphas);
+finalspeconlyeven=dblarr(noofoutputs,noofalphas);
+
+
+for k=long(0),noofoutputs-1 do begin
+for j=long(0),noofalphas-1 do begin
+    
+  tabb(*,k,j)=tab(*,j*noofoutputs+k)
+endfor
+endfor
+set_plot, "ps";
+device, filename="timefrequency.ps", /color, bits=8;
+
+
+for j=long(0),noofalphas-1 do begin
+t=tabb(0,*,j);
+a=tabb(1,*,j);
+sigmasq=double(16)
+     b=a*exp(-(t-200)*(t-200)/(2*sigmasq))
+	  plot,t,b
+
+
+	      fftresult=fft(hanning(noofoutputs)*b, /double,/inverse)
+  ; fftresult=fft(b, /double, /inverse)
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+         plot, frequ/4,fftresultIII, /ylog,xrange=[fromenerg,toenerg],  xstyle=1,title=j*0.1+0.3
+
+
+
+endfor
+
+
+device, /close;
+set_plot, "x";
+end
+       

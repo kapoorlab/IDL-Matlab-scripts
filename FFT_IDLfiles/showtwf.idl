@@ -1,0 +1,81 @@
+!p.font=1;
+!p.charthick=2.0;
+!p.charsize=1.5;
+
+pi=3.1415926;
+
+
+
+wf_output_every=1; 
+dumpwidth=1;
+deltax=0.1;
+deltat=0.025;
+noofx=long(1500);
+noofoutputs=long(70000);
+
+
+nooflines=long(noofx*noofoutputs);
+noofcolumns=long(2);
+
+noofcolors=50;
+loadct, 5, ncolors=noofcolors;
+colors=noofcolors-1-lindgen(noofcolors)
+
+set_plot, "ps";
+device, filename="correlation.ps", /color, bits=8;
+
+
+x=lindgen(noofx);
+x=x-0.5*noofx;
+x=x*deltax;
+
+
+t=lindgen(noofoutputs);
+t=t*deltat; 
+
+wfel=complexarr(noofx,noofoutputs);
+elecprob=complexarr(noofoutputs);
+filename='wf0.1.dat';
+tab=dblarr(noofcolumns,nooflines);
+
+
+ openr, l, filename, /get_lun;
+ readf, l, tab;
+ close, /all;
+
+
+
+
+
+for k=long(0),noofoutputs-1 do begin
+for j=long(0),noofx-1 do begin
+  wfel(j,k)=complex(tab(0,k*noofx+j),tab(1,k*noofx+j));
+endfor
+endfor
+
+
+
+
+
+
+           
+
+
+for k=long(0),noofoutputs-1 do begin
+    for j=long(0),noofx-1 do begin
+  elecprob(k)=elecprob(k)+wfel(j,k)*deltax
+	    endfor
+	    endfor
+
+
+ OpenW,lun,"correlation.dat",/get_lun
+for k=long(0),noofoutputs-1 do begin
+  printf,lun,t(k),real_part(elecprob(k)),imaginary(elecprob(k))
+endfor
+ free_lun,lun
+
+
+
+device, /close;
+set_plot, "x";
+end

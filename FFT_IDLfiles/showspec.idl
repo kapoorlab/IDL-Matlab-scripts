@@ -1,0 +1,51 @@
+!p.font=1;
+!p.charthick=2.0;
+!p.charsize=1.5;
+
+pi=3.1415926;
+
+noofcols=long(5);
+noofoutputs=long(412);
+
+
+noofcolors=50;
+loadct, 5, ncolors=noofcolors;
+colors=noofcolors-1-lindgen(noofcolors)
+
+set_plot, "ps";
+device, filename="tmp.ps", /color, bits=8;
+
+
+filename='spec.dat';
+tab=dblarr(noofcols,noofoutputs);
+
+
+ openr, l, filename, /get_lun;
+ readf, l, tab;
+ close, /all;
+
+
+energ=tab(0,*);
+a=tab(1,*);
+
+
+plot, energ, a, /ylog, xstyle=1, ystyle=1, thick=3
+
+  plots, [0,0], [1e-12,1], color=10, noclip=0
+
+
+for  k=long(1),long(7) do begin
+
+peakpos=-0.5+k*4
+
+  plots, [peakpos,peakpos], [1e-12,1], color=20, noclip=0
+
+peakpos=-0.09+k*4
+
+  plots, [peakpos,peakpos], [1e-12,1], color=30, noclip=0
+
+endfor
+
+device, /close;
+set_plot, "x";
+end

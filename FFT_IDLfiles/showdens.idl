@@ -1,0 +1,147 @@
+pi=3.1415926;
+
+noofoutputs=long(8610);
+noofcolumns=long(2)
+
+tab=dblarr(noofcolumns,noofoutputs);
+
+filename="../dipoleacc.dat..M";
+
+noofcolors=64;
+loadct, 4, ncolors=noofcolors;
+colors=noofcolors-1-indgen(noofcolors)
+
+
+openr, l, filename, /get_lun;
+readf, l, tab;
+close, /all;
+
+set_plot, "ps";
+device, filename="tmp.ps", /color, bits=8;
+
+t=tab(0,*);
+a=tab(1,*);
+
+
+plot, t,a
+
+
+;;fftresult=fft(hanning(noofoutputs)*a)
+fftresult=fft(a)
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=indgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+ plot, frequ,fftresultIII, /ylog, xstyle=1
+
+
+
+ ;;;;;;;;;;;;;;;;;;; w-t-analysis
+
+hanningwidth=long(100);;; should be even
+f=hanning(hanningwidth);
+nooftimewindows=long(noofoutputs/(2.0*hanningwidth)*20);
+
+
+wt=dblarr(nooftimewindows,noofoutputs);
+ww=dblarr(nooftimewindows);
+
+
+counter=long(0);
+for i=hanningwidth/2,noofoutputs/2-1,long(hanningwidth/2.0) do begin
+;q=extrac(fftresult,i-hanningwidth/2,hanningwidth)*f;
+tobeffted=dcomplexarr(noofoutputs);
+;tobeffted[i-hanningwidth/2:i+hanningwidth/2-1]=q;
+q=extrac(fftresult,noofoutputs-1-i-hanningwidth/2,hanningwidth)*f;
+tobeffted[noofoutputs-1-i-hanningwidth/2:noofoutputs-1-i+hanningwidth/2-1]=q;
+
+;plot, imaginary(fftresult), line=1, xrange=[0,100]
+;  oplot, imaginary(tobeffted), line=1, thick=3
+
+ww(counter)=frequ(i+noofoutputs/2);
+fftresultII=fft(tobeffted,1);
+wt(counter,*)=fftresultII*conj(fftresultII);
+counter=counter+1;
+endfor
+ 
+
+
+  orderofmagn=6
+  levelsforlogwt=indgen(noofcolors)
+  levelsforlogwt=levelsforlogwt/(1.0*(noofcolors-1))
+  levelsforlogwt=max(alog10(wt))-orderofmagn+orderofmagn*levelsforlogwt
+
+contour, alog10(wt),ww,t, levels=levelsforlogwt, c_colors=colors, /fill, xstyle=1, ystyle=1, charsize=0.75,pos=[0.1,0.1,0.85,0.98], xrange=[0,8], yrange=[250,450]
+;;; colorbar, ncolors=noofcolors, minrange=levelsforlogwt(0), maxrange=levelsforlogwt(noofcolors-1), position=[0.95,0.1,0.98,0.98], /vertical, format='(D8.2)', charsize=0.75
+
+
+;;;;;;;;;;;;;;;;
+;;;; smt analysis
+;;;;;;;;;;;;;;;;;;;;;
+
+binding=0.8;
+ehat=0.04+10*0.01;
+w=0.056;
+ahat=ehat/w;
+n=6.0;
+phi=0.0;
+up=ahat^2/4.0;
+
+noofts=long(10000)
+t=indgen(noofts);
+t=t/(1.0*noofts)*2*pi/w*n
+
+zthresh=0.05;
+vnull=0.0;
+znull=0.0;
+
+vecpot=-ahat*sin(w*t/(2.0*n))*sin(w*t/(2.0*n))*sin(w*t+phi);
+
+
+intvecpot=vecpot;
+intvecpot(0)=0.0;
+for i=1,noofts-1 do begin
+intvecpot(i)=intvecpot(i-1)+vecpot(i)*(t(i)-t(i-1));
+endfor
+
+
+
+plots, abs(intvecpot)/max(intvecpot)*6,t, noclip=0
+
+maxreturn=0.0;
+
+for i=noofts/2-long(noofts/n),noofts/2+long(noofts/n) do begin
+for j=i,i+long(1.5*noofts/n) do begin
+
+  z=intvecpot(j)-intvecpot(i)+(vnull-vecpot(i))*(t(j)-t(i))+znull;
+
+  if (((abs(z+znull) LT zthresh)))  then begin
+  v=vecpot(j)-vecpot(i)+vnull
+  energ=0.5*v*v
+
+  plots, energ+binding, t(j), psym=1, noclip=0
+
+
+ 
+
+  if (energ GT maxreturn) then maxreturn=energ
+  endif
+
+endfor
+endfor
+
+
+device, /close;
+set_plot, "x";
+end

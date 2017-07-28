@@ -1,0 +1,49 @@
+!p.font=1;
+!p.charthick=2.0;
+!p.charsize=1.5;
+
+pi=3.1415926;
+imagi=complex(0.0,1.0)
+
+deltax=0.05;
+noofx=long(1000);
+
+nooft=long(1000)
+  deltat=2*pi/(1.0*nooft)
+
+
+noofcolors=50;
+loadct, 5, ncolors=noofcolors;
+colors=noofcolors-1-lindgen(noofcolors)
+
+set_plot, "ps";
+device, filename="pt_pot.ps", /color, bits=8;
+
+
+x=lindgen(noofx);
+x=x-0.5*noofx;
+x=x*deltax;
+
+t=lindgen(nooft);
+t=t*deltat;
+
+alphahat=10.0
+
+
+  khpot=dblarr(noofx)
+
+for j=long(0),noofx-1 do begin
+  ;;khpot(j)=0.0;
+;;for k=long(0),nooft-1 do begin
+  khpot(j)=-1.0/(cosh(x(j)))^2;
+;;endfor
+endfor
+
+;;khpot=khpot/(2*pi);
+
+
+plot, x, khpot,xrange=[-10,10]
+
+device, /close;
+set_plot, "x";
+end

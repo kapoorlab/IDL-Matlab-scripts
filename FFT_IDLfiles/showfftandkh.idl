@@ -1,0 +1,3928 @@
+!p.charsize=1.5
+!p.font=1
+
+pi=3.1415926;
+
+noofoutputs=long(40000);
+noofcolumns=long(5)
+noofalphas=long(50);
+fromenerg=-5
+toenerg=0
+
+
+deltaalpha=0.2;
+alphanull=0.2;
+
+alphahat=lindgen(noofalphas);
+
+alphahat=alphanull+deltaalpha*alphahat;
+
+
+
+
+tab=dblarr(noofcolumns,noofoutputs);
+
+tab1=dblarr(noofcolumns,noofoutputs);
+tab2=dblarr(noofcolumns,noofoutputs);
+
+tab3=dblarr(noofcolumns,noofoutputs);
+tab4=dblarr(noofcolumns,noofoutputs);
+
+tab5=dblarr(noofcolumns,noofoutputs);
+
+tab6=dblarr(noofcolumns,noofoutputs);
+
+tab7=dblarr(noofcolumns,noofoutputs);
+tab8=dblarr(noofcolumns,noofoutputs);
+
+
+
+
+tab9=dblarr(noofcolumns,noofoutputs);
+tab10=dblarr(noofcolumns,noofoutputs);
+
+
+
+
+
+
+
+
+tab11=dblarr(noofcolumns,noofoutputs);
+
+
+
+tab12=dblarr(noofcolumns,noofoutputs);
+
+
+
+tab13=dblarr(noofcolumns,noofoutputs);
+
+
+tab14=dblarr(noofcolumns,noofoutputs);
+
+
+
+tab15=dblarr(noofcolumns,noofoutputs);
+
+
+tab16=dblarr(noofcolumns,noofoutputs);
+
+tab17=dblarr(noofcolumns,noofoutputs);
+
+
+tab18=dblarr(noofcolumns,noofoutputs);
+
+tab19=dblarr(noofcolumns,noofoutputs);
+
+
+tab20=dblarr(noofcolumns,noofoutputs);
+
+
+
+
+
+
+tab21=dblarr(noofcolumns,noofoutputs);
+
+tab22=dblarr(noofcolumns,noofoutputs);
+tab23=dblarr(noofcolumns,noofoutputs);
+
+tab24=dblarr(noofcolumns,noofoutputs);
+tab25=dblarr(noofcolumns,noofoutputs);
+
+tab26=dblarr(noofcolumns,noofoutputs);
+
+tab27=dblarr(noofcolumns,noofoutputs);
+
+tab28=dblarr(noofcolumns,noofoutputs);
+tab29=dblarr(noofcolumns,noofoutputs);
+
+
+
+
+tab30=dblarr(noofcolumns,noofoutputs);
+tab31=dblarr(noofcolumns,noofoutputs);
+
+
+
+
+
+
+
+
+tab32=dblarr(noofcolumns,noofoutputs);
+
+
+
+tab33=dblarr(noofcolumns,noofoutputs);
+
+
+
+tab34=dblarr(noofcolumns,noofoutputs);
+
+
+tab35=dblarr(noofcolumns,noofoutputs);
+
+
+
+tab36=dblarr(noofcolumns,noofoutputs);
+
+
+tab37=dblarr(noofcolumns,noofoutputs);
+
+
+
+tab38=dblarr(noofcolumns,noofoutputs);
+
+
+
+
+tab39=dblarr(noofcolumns,noofoutputs);
+
+
+
+tab40=dblarr(noofcolumns,noofoutputs);
+
+
+
+tab41=dblarr(noofcolumns,noofoutputs);
+
+
+tab42=dblarr(noofcolumns,noofoutputs);
+
+
+
+tab43=dblarr(noofcolumns,noofoutputs);
+
+
+tab44=dblarr(noofcolumns,noofoutputs);
+
+
+
+tab45=dblarr(noofcolumns,noofoutputs);
+
+
+
+
+
+tab46=dblarr(noofcolumns,noofoutputs);
+
+
+
+tab47=dblarr(noofcolumns,noofoutputs);
+
+
+
+tab48=dblarr(noofcolumns,noofoutputs);
+
+
+
+
+
+tab49=dblarr(noofcolumns,noofoutputs);
+
+
+
+
+
+
+
+
+
+filename="wfatgpoi_khbe0.2.dat";
+filename2="wfatgpoi_khbe0.4.dat";
+filename3="wfatgpoi_khbe0.6.dat";
+filename4="wfatgpoi_khbe0.8.dat";
+filename5="wfatgpoi_khbe1.dat";
+
+filename6="wfatgpoi_khbe1.2.dat";
+filename7="wfatgpoi_khbe1.4.dat";
+filename8="wfatgpoi_khbe1.6.dat";
+filename9="wfatgpoi_khbe1.8.dat";
+filename10="wfatgpoi_khbe2.dat";
+filename11="wfatgpoi_khbe2.2.dat";
+filename12="wfatgpoi_khbe2.4.dat";
+
+
+  filename13="wfatgpoi_khbe2.6.dat";
+
+  filename14="wfatgpoi_khbe2.8.dat";
+
+  filename15="wfatgpoi_khbe3.dat";
+  filename16="wfatgpoi_khbe3.2.dat";
+
+  filename17="wfatgpoi_khbe3.4.dat";
+  filename18="wfatgpoi_khbe3.6.dat";
+  filename19="wfatgpoi_khbe3.8.dat";
+
+filename20="wfatgpoi_khbe4.dat";
+filename21="wfatgpoi_khbe4.2.dat";
+filename22="wfatgpoi_khbe4.4.dat";
+filename23="wfatgpoi_khbe4.6.dat";
+filename24="wfatgpoi_khbe4.8.dat";
+
+filename25="wfatgpoi_khbe5.dat";
+filename26="wfatgpoi_khbe5.2.dat";
+filename27="wfatgpoi_khbe5.4.dat";
+filename28="wfatgpoi_khbe5.6.dat";
+filename29="wfatgpoi_khbe5.8.dat";
+filename30="wfatgpoi_khbe6.dat";
+filename31="wfatgpoi_khbe6.2.dat";
+
+
+  filename32="wfatgpoi_khbe6.4.dat";
+
+  filename33="wfatgpoi_khbe6.6.dat";
+
+  filename34="wfatgpoi_khbe6.8.dat";
+  filename35="wfatgpoi_khbe7.dat";
+
+  filename36="wfatgpoi_khbe7.2.dat";
+  filename37="wfatgpoi_khbe7.4.dat";
+  filename38="wfatgpoi_khbe7.6.dat";
+ filename39="wfatgpoi_khbe7.8.dat";
+
+
+ filename40="wfatgpoi_khbe8.dat";
+
+  filename41="wfatgpoi_khbe8.2.dat";
+
+  filename42="wfatgpoi_khbe8.4.dat";
+  filename43="wfatgpoi_khbe8.6.dat";
+
+  filename44="wfatgpoi_khbe8.8.dat";
+  filename45="wfatgpoi_khbe9.dat";
+  filename46="wfatgpoi_khbe9.2.dat";
+ filename47="wfatgpoi_khbe9.4.dat";
+ filename48="wfatgpoi_khbe9.6.dat";
+  filename49="wfatgpoi_khbe9.8.dat";
+ filename50="wfatgpoi_khbe10.dat";
+
+
+
+
+noofcolors=64;
+loadct, 4, ncolors=noofcolors;
+colors=noofcolors-1-lindgen(noofcolors)
+
+openr, l, filename, /get_lun;
+readf, l, tab;
+close, /all;
+
+
+openr, l, filename2, /get_lun;
+readf, l, tab1;
+close, /all;
+
+openr, l, filename3, /get_lun;
+readf, l, tab2;
+close, /all;
+
+openr, l, filename4, /get_lun;
+readf, l, tab3;
+close, /all;
+
+
+openr, l, filename5, /get_lun;
+readf, l, tab4;
+close, /all;
+
+
+openr, l, filename6, /get_lun;
+readf, l, tab5;
+close, /all;
+
+
+openr, l, filename7, /get_lun;
+readf, l, tab6;
+close, /all;
+
+openr, l, filename8, /get_lun;
+readf, l, tab7;
+close, /all;
+
+
+
+openr, l, filename9, /get_lun;
+readf, l, tab8;
+close, /all;
+
+openr, l, filename10, /get_lun;
+readf, l, tab9;
+close, /all;
+
+
+
+openr, l, filename11, /get_lun;
+readf, l, tab10;
+close, /all;
+
+
+openr, l, filename12, /get_lun;
+readf, l, tab11;
+close, /all;
+
+
+openr, l, filename13, /get_lun;
+readf, l, tab12;
+close, /all;
+
+
+openr, l, filename14, /get_lun;
+readf, l, tab13;
+close, /all;
+
+
+openr, l, filename15, /get_lun;
+readf, l, tab14;
+close, /all;
+
+
+openr, l, filename16, /get_lun;
+readf, l, tab15;
+close, /all;
+
+
+openr, l, filename17, /get_lun;
+readf, l, tab16;
+close, /all;
+
+openr, l, filename18, /get_lun;
+readf, l, tab17;
+close, /all;
+
+
+openr, l, filename19, /get_lun;
+readf, l, tab18;
+close, /all;
+
+openr, l, filename20, /get_lun;
+readf, l, tab19;
+close, /all;
+
+
+
+openr, l, filename21, /get_lun;
+readf, l, tab20;
+close, /all;
+
+
+openr, l, filename22, /get_lun;
+readf, l, tab21;
+close, /all;
+
+openr, l, filename23, /get_lun;
+readf, l, tab22;
+close, /all;
+
+openr, l, filename24, /get_lun;
+readf, l, tab23;
+close, /all;
+
+
+openr, l, filename25, /get_lun;
+readf, l, tab24;
+close, /all;
+
+
+openr, l, filename26, /get_lun;
+readf, l, tab25;
+close, /all;
+
+
+openr, l, filename27, /get_lun;
+readf, l, tab26;
+close, /all;
+
+openr, l, filename28, /get_lun;
+readf, l, tab27;
+close, /all;
+
+
+
+openr, l, filename29, /get_lun;
+readf, l, tab28;
+close, /all;
+
+openr, l, filename30, /get_lun;
+readf, l, tab29;
+close, /all;
+
+
+
+openr, l, filename31, /get_lun;
+readf, l, tab30;
+close, /all;
+
+
+openr, l, filename32, /get_lun;
+readf, l, tab31;
+close, /all;
+
+
+openr, l, filename33, /get_lun;
+readf, l, tab32;
+close, /all;
+
+
+openr, l, filename34, /get_lun;
+readf, l, tab33;
+close, /all;
+
+
+openr, l, filename35, /get_lun;
+readf, l, tab34;
+close, /all;
+
+
+openr, l, filename36, /get_lun;
+readf, l, tab35;
+close, /all;
+
+
+openr, l, filename37, /get_lun;
+readf, l, tab36;
+close, /all;
+
+openr, l, filename38, /get_lun;
+readf, l, tab37;
+close, /all;
+
+
+openr, l, filename39, /get_lun;
+readf, l, tab38;
+close, /all;
+
+
+openr, l, filename40, /get_lun;
+readf, l, tab39;
+close, /all;
+
+
+openr, l, filename41, /get_lun;
+readf, l, tab40;
+close, /all;
+
+
+openr, l, filename42, /get_lun;
+readf, l, tab41;
+close, /all;
+
+
+openr, l, filename43, /get_lun;
+readf, l, tab42;
+close, /all;
+
+
+openr, l, filename44, /get_lun;
+readf, l, tab43;
+close, /all;
+
+
+openr, l, filename45, /get_lun;
+readf, l, tab44;
+close, /all;
+
+openr, l, filename46, /get_lun;
+readf, l, tab45;
+close, /all;
+
+
+openr, l, filename47, /get_lun;
+readf, l, tab46;
+close, /all;
+
+
+openr, l, filename48, /get_lun;
+readf, l, tab47;
+close, /all;
+
+openr, l, filename49, /get_lun;
+readf, l, tab48;
+close, /all;
+
+
+openr, l, filename50, /get_lun;
+readf, l, tab49;
+close, /all;
+finalspec=dblarr(noofoutputs,noofalphas);
+finalspeconlyodd=dblarr(noofoutputs,noofalphas);
+finalspeconlyeven=dblarr(noofoutputs,noofalphas);
+
+
+
+set_plot, "ps";
+device, filename="tmp_khbe.ps", /color, bits=8;
+
+
+
+t=tab(0,*);
+a=tab(1,*);
+b=tab(2,*);
+aa=tab(3,*);
+bb=tab(4,*);
+
+
+cwf=dcomplex(a,b)
+cwfex=dcomplex(aa,bb)
+
+  ;; plot, t,a
+
+
+  fftresult=fft(hanning(noofoutputs)*cwf, /double, /inverse)
+  ; fftresult=fft(cwf, /double, /inverse)
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+      plot, frequ,fftresultIII, /ylog, xrange=[fromenerg,toenerg], xstyle=1,title="K.H frame alpha=0.2"
+
+      finalspec(*,0)=fftresultIII
+      finalspeconlyeven(*,0)=fftresultIII
+
+
+      ;; and now the correlation with the excited state
+
+  fftresult=fft(hanning(noofoutputs)*cwfex, /double, /inverse)
+
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+  oplot, frequ,fftresultIII, color=30
+ 
+
+      finalspeconlyodd(*,0)=fftresultIII
+      finalspec(*,0)=finalspec(*,0)+fftresultIII
+
+
+
+ 
+
+
+t=tab1(0,*);
+a=tab1(1,*);
+b=tab1(2,*);
+aa=tab1(3,*);
+bb=tab1(4,*);
+
+
+cwf=dcomplex(a,b)
+cwfex=dcomplex(aa,bb)
+
+  ;; plot, t,a
+
+
+  fftresult=fft(hanning(noofoutputs)*cwf, /double, /inverse)
+  ; fftresult=fft(cwf, /double, /inverse)
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+      plot, frequ,fftresultIII, /ylog, xrange=[fromenerg,toenerg], xstyle=1,title="K.H frame alpha=0.6"
+
+      finalspec(*,1)=fftresultIII
+      finalspeconlyeven(*,1)=fftresultIII
+
+
+      ;; and now the correlation with the excited state
+
+  fftresult=fft(hanning(noofoutputs)*cwfex, /double, /inverse)
+
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+  oplot, frequ,fftresultIII, color=30
+ 
+
+      finalspeconlyodd(*,1)=fftresultIII
+      finalspec(*,1)=finalspec(*,1)+fftresultIII
+
+
+
+
+
+
+t=tab2(0,*);
+a=tab2(1,*);
+b=tab2(2,*);
+aa=tab2(3,*);
+bb=tab2(4,*);
+
+
+cwf=dcomplex(a,b)
+cwfex=dcomplex(aa,bb)
+
+  ;; plot, t,a
+
+
+  fftresult=fft(hanning(noofoutputs)*cwf, /double, /inverse)
+  ; fftresult=fft(cwf, /double, /inverse)
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+      plot, frequ,fftresultIII, /ylog, xrange=[fromenerg,toenerg], xstyle=1,title="K.H frame alpha=1"
+
+      finalspec(*,2)=fftresultIII
+      finalspeconlyeven(*,2)=fftresultIII
+
+
+      ;; and now the correlation with the excited state
+
+  fftresult=fft(hanning(noofoutputs)*cwfex, /double, /inverse)
+
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+  oplot, frequ,fftresultIII, color=30
+ 
+
+      finalspeconlyodd(*,2)=fftresultIII
+      finalspec(*,2)=finalspec(*,2)+fftresultIII
+
+
+
+
+t=tab3(0,*);
+a=tab3(1,*);
+b=tab3(2,*);
+aa=tab3(3,*);
+bb=tab3(4,*);
+
+
+cwf=dcomplex(a,b)
+cwfex=dcomplex(aa,bb)
+
+  ;; plot, t,a
+
+
+  fftresult=fft(hanning(noofoutputs)*cwf, /double, /inverse)
+  ; fftresult=fft(cwf, /double, /inverse)
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+      plot, frequ,fftresultIII, /ylog, xrange=[fromenerg,toenerg], xstyle=1,title="K.H frame alpha=1.4"
+
+      finalspec(*,3)=fftresultIII
+      finalspeconlyeven(*,3)=fftresultIII
+
+
+      ;; and now the correlation with the excited state
+
+  fftresult=fft(hanning(noofoutputs)*cwfex, /double, /inverse)
+
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+  oplot, frequ,fftresultIII, color=30
+ 
+
+      finalspeconlyodd(*,3)=fftresultIII
+      finalspec(*,3)=finalspec(*,3)+fftresultIII
+
+
+
+t=tab4(0,*);
+a=tab4(1,*);
+b=tab4(2,*);
+aa=tab4(3,*);
+bb=tab4(4,*);
+
+
+cwf=dcomplex(a,b)
+cwfex=dcomplex(aa,bb)
+
+  ;; plot, t,a
+
+
+  fftresult=fft(hanning(noofoutputs)*cwf, /double, /inverse)
+  ; fftresult=fft(cwf, /double, /inverse)
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+      plot, frequ,fftresultIII, /ylog, xrange=[fromenerg,toenerg], xstyle=1,title="K.H frame alpha=1.8"
+
+      finalspec(*,4)=fftresultIII
+      finalspeconlyeven(*,4)=fftresultIII
+
+
+      ;; and now the correlation with the excited state
+
+  fftresult=fft(hanning(noofoutputs)*cwfex, /double, /inverse)
+
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+  oplot, frequ,fftresultIII, color=30
+ 
+
+      finalspeconlyodd(*,4)=fftresultIII
+      finalspec(*,4)=finalspec(*,4)+fftresultIII
+
+
+
+
+
+
+t=tab5(0,*);
+a=tab5(1,*);
+b=tab5(2,*);
+aa=tab5(3,*);
+bb=tab5(4,*);
+
+
+cwf=dcomplex(a,b)
+cwfex=dcomplex(aa,bb)
+
+  ;; plot, t,a
+
+
+  fftresult=fft(hanning(noofoutputs)*cwf, /double, /inverse)
+  ; fftresult=fft(cwf, /double, /inverse)
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+      plot, frequ,fftresultIII, /ylog, xrange=[fromenerg,toenerg], xstyle=1,title="K.H frame alpha=2.2"
+
+      finalspec(*,5)=fftresultIII
+      finalspeconlyeven(*,5)=fftresultIII
+
+
+      ;; and now the correlation with the excited state
+
+  fftresult=fft(hanning(noofoutputs)*cwfex, /double, /inverse)
+
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+  oplot, frequ,fftresultIII, color=30
+ 
+
+      finalspeconlyodd(*,5)=fftresultIII
+      finalspec(*,5)=finalspec(*,5)+fftresultIII
+
+
+
+
+t=tab6(0,*);
+a=tab6(1,*);
+b=tab6(2,*);
+aa=tab6(3,*);
+bb=tab6(4,*);
+
+
+cwf=dcomplex(a,b)
+cwfex=dcomplex(aa,bb)
+
+  ;; plot, t,a
+
+
+  fftresult=fft(hanning(noofoutputs)*cwf, /double, /inverse)
+  ; fftresult=fft(cwf, /double, /inverse)
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+      plot, frequ,fftresultIII, /ylog, xrange=[fromenerg,toenerg], xstyle=1,title="K.H frame alpha=2.6"
+
+      finalspec(*,6)=fftresultIII
+      finalspeconlyeven(*,6)=fftresultIII
+
+
+      ;; and now the correlation with the excited state
+
+  fftresult=fft(hanning(noofoutputs)*cwfex, /double, /inverse)
+
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+  oplot, frequ,fftresultIII, color=30
+ 
+
+      finalspeconlyodd(*,6)=fftresultIII
+      finalspec(*,6)=finalspec(*,6)+fftresultIII
+
+
+
+
+
+
+t=tab7(0,*);
+a=tab7(1,*);
+b=tab7(2,*);
+aa=tab7(3,*);
+bb=tab7(4,*);
+
+
+cwf=dcomplex(a,b)
+cwfex=dcomplex(aa,bb)
+
+  ;; plot, t,a
+
+
+  fftresult=fft(hanning(noofoutputs)*cwf, /double, /inverse)
+  ; fftresult=fft(cwf, /double, /inverse)
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+      plot, frequ,fftresultIII, /ylog, xrange=[fromenerg,toenerg], xstyle=1,title="K.H frame alpha=3"
+
+      finalspec(*,7)=fftresultIII
+      finalspeconlyeven(*,7)=fftresultIII
+
+
+      ;; and now the correlation with the excited state
+
+  fftresult=fft(hanning(noofoutputs)*cwfex, /double, /inverse)
+
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+  oplot, frequ,fftresultIII, color=30
+ 
+
+      finalspeconlyodd(*,7)=fftresultIII
+      finalspec(*,7)=finalspec(*,7)+fftresultIII
+
+
+
+t=tab8(0,*);
+a=tab8(1,*);
+b=tab8(2,*);
+aa=tab8(3,*);
+bb=tab8(4,*);
+
+
+cwf=dcomplex(a,b)
+cwfex=dcomplex(aa,bb)
+
+  ;; plot, t,a
+
+
+  fftresult=fft(hanning(noofoutputs)*cwf, /double, /inverse)
+  ; fftresult=fft(cwf, /double, /inverse)
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+      plot, frequ,fftresultIII, /ylog, xrange=[fromenerg,toenerg], xstyle=1,title="K.H frame alpha=3.4"
+
+      finalspec(*,8)=fftresultIII
+      finalspeconlyeven(*,8)=fftresultIII
+
+
+      ;; and now the correlation with the excited state
+
+  fftresult=fft(hanning(noofoutputs)*cwfex, /double, /inverse)
+
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+  oplot, frequ,fftresultIII, color=30
+ 
+
+      finalspeconlyodd(*,8)=fftresultIII
+      finalspec(*,8)=finalspec(*,8)+fftresultIII
+
+
+
+						
+
+
+
+
+t=tab9(0,*);
+a=tab9(1,*);
+b=tab9(2,*);
+aa=tab9(3,*);
+bb=tab9(4,*);
+
+
+cwf=dcomplex(a,b)
+cwfex=dcomplex(aa,bb)
+
+  ;; plot, t,a
+
+
+  fftresult=fft(hanning(noofoutputs)*cwf, /double, /inverse)
+  ; fftresult=fft(cwf, /double, /inverse)
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+      plot, frequ,fftresultIII, /ylog, xrange=[fromenerg,toenerg], xstyle=1,title="K.H frame alpha=3.8"
+
+      finalspec(*,9)=fftresultIII
+      finalspeconlyeven(*,9)=fftresultIII
+
+
+      ;; and now the correlation with the excited state
+
+  fftresult=fft(hanning(noofoutputs)*cwfex, /double, /inverse)
+
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+  oplot, frequ,fftresultIII, color=30
+ 
+
+      finalspeconlyodd(*,9)=fftresultIII
+      finalspec(*,9)=finalspec(*,9)+fftresultIII
+
+
+
+					
+
+
+t=tab10(0,*);
+a=tab10(1,*);
+b=tab10(2,*);
+aa=tab10(3,*);
+bb=tab10(4,*);
+
+
+cwf=dcomplex(a,b)
+cwfex=dcomplex(aa,bb)
+
+  ;; plot, t,a
+
+
+  fftresult=fft(hanning(noofoutputs)*cwf, /double, /inverse)
+  ; fftresult=fft(cwf, /double, /inverse)
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+      plot, frequ,fftresultIII, /ylog, xrange=[fromenerg,toenerg], xstyle=1,title="K.H frame alpha=4.2"
+
+      finalspec(*,10)=fftresultIII
+      finalspeconlyeven(*,10)=fftresultIII
+
+
+      ;; and now the correlation with the excited state
+
+  fftresult=fft(hanning(noofoutputs)*cwfex, /double, /inverse)
+
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+  oplot, frequ,fftresultIII, color=30
+ 
+
+      finalspeconlyodd(*,10)=fftresultIII
+      finalspec(*,10)=finalspec(*,10)+fftresultIII
+
+
+
+					
+
+
+
+
+
+t=tab11(0,*);
+a=tab11(1,*);
+b=tab11(2,*);
+aa=tab11(3,*);
+bb=tab11(4,*);
+
+
+cwf=dcomplex(a,b)
+cwfex=dcomplex(aa,bb)
+
+  ;; plot, t,a
+
+
+  fftresult=fft(hanning(noofoutputs)*cwf, /double, /inverse)
+  ; fftresult=fft(cwf, /double, /inverse)
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+      plot, frequ,fftresultIII, /ylog, xrange=[fromenerg,toenerg], xstyle=1,title="K.H frame alpha=4.6"
+
+      finalspec(*,11)=fftresultIII
+      finalspeconlyeven(*,11)=fftresultIII
+
+
+      ;; and now the correlation with the excited state
+
+  fftresult=fft(hanning(noofoutputs)*cwfex, /double, /inverse)
+
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+  oplot, frequ,fftresultIII, color=30
+ 
+
+      finalspeconlyodd(*,11)=fftresultIII
+      finalspec(*,11)=finalspec(*,11)+fftresultIII
+
+
+
+					
+
+
+
+t=tab12(0,*);
+a=tab12(1,*);
+b=tab12(2,*);
+aa=tab12(3,*);
+bb=tab12(4,*);
+
+
+cwf=dcomplex(a,b)
+cwfex=dcomplex(aa,bb)
+
+  ;; plot, t,a
+
+
+  fftresult=fft(hanning(noofoutputs)*cwf, /double, /inverse)
+  ; fftresult=fft(cwf, /double, /inverse)
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+      plot, frequ,fftresultIII, /ylog, xrange=[fromenerg,toenerg], xstyle=1,title="K.H frame alpha=5"
+
+      finalspec(*,12)=fftresultIII
+      finalspeconlyeven(*,12)=fftresultIII
+
+
+      ;; and now the correlation with the excited state
+
+  fftresult=fft(hanning(noofoutputs)*cwfex, /double, /inverse)
+
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+  oplot, frequ,fftresultIII, color=30
+ 
+
+      finalspeconlyodd(*,12)=fftresultIII
+      finalspec(*,12)=finalspec(*,12)+fftresultIII
+
+
+
+					
+
+
+
+
+t=tab13(0,*);
+a=tab13(1,*);
+b=tab13(2,*);
+aa=tab13(3,*);
+bb=tab13(4,*);
+
+
+cwf=dcomplex(a,b)
+cwfex=dcomplex(aa,bb)
+
+  ;; plot, t,a
+
+
+  fftresult=fft(hanning(noofoutputs)*cwf, /double, /inverse)
+  ; fftresult=fft(cwf, /double, /inverse)
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+      plot, frequ,fftresultIII, /ylog, xrange=[fromenerg,toenerg], xstyle=1,title="K.H frame alpha=5.4"
+
+      finalspec(*,13)=fftresultIII
+      finalspeconlyeven(*,13)=fftresultIII
+
+
+      ;; and now the correlation with the excited state
+
+  fftresult=fft(hanning(noofoutputs)*cwfex, /double, /inverse)
+
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+  oplot, frequ,fftresultIII, color=30
+ 
+
+      finalspeconlyodd(*,13)=fftresultIII
+      finalspec(*,13)=finalspec(*,13)+fftresultIII
+
+
+
+					
+
+
+
+t=tab14(0,*);
+a=tab14(1,*);
+b=tab14(2,*);
+aa=tab14(3,*);
+bb=tab14(4,*);
+
+
+cwf=dcomplex(a,b)
+cwfex=dcomplex(aa,bb)
+
+  ;; plot, t,a
+
+
+  fftresult=fft(hanning(noofoutputs)*cwf, /double, /inverse)
+  ; fftresult=fft(cwf, /double, /inverse)
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+      plot, frequ,fftresultIII, /ylog, xrange=[fromenerg,toenerg], xstyle=1,title="K.H frame alpha=5.8"
+
+      finalspec(*,14)=fftresultIII
+      finalspeconlyeven(*,14)=fftresultIII
+
+
+      ;; and now the correlation with the excited state
+
+  fftresult=fft(hanning(noofoutputs)*cwfex, /double, /inverse)
+
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+  oplot, frequ,fftresultIII, color=30
+ 
+
+      finalspeconlyodd(*,14)=fftresultIII
+      finalspec(*,14)=finalspec(*,14)+fftresultIII
+
+
+
+					
+
+
+
+
+
+
+
+
+t=tab15(0,*);
+a=tab15(1,*);
+b=tab15(2,*);
+aa=tab15(3,*);
+bb=tab15(4,*);
+
+
+cwf=dcomplex(a,b)
+cwfex=dcomplex(aa,bb)
+
+  ;; plot, t,a
+
+
+  fftresult=fft(hanning(noofoutputs)*cwf, /double, /inverse)
+  ; fftresult=fft(cwf, /double, /inverse)
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+      plot, frequ,fftresultIII, /ylog, xrange=[fromenerg,toenerg], xstyle=1,title="K.H frame alpha=6.2"
+
+      finalspec(*,15)=fftresultIII
+      finalspeconlyeven(*,15)=fftresultIII
+
+
+      ;; and now the correlation with the excited state
+
+  fftresult=fft(hanning(noofoutputs)*cwfex, /double, /inverse)
+
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+  oplot, frequ,fftresultIII, color=30
+ 
+
+      finalspeconlyodd(*,15)=fftresultIII
+      finalspec(*,15)=finalspec(*,15)+fftresultIII
+
+
+
+					
+
+						
+
+
+
+
+t=tab16(0,*);
+a=tab16(1,*);
+b=tab16(2,*);
+aa=tab16(3,*);
+bb=tab16(4,*);
+
+
+cwf=dcomplex(a,b)
+cwfex=dcomplex(aa,bb)
+
+  ;; plot, t,a
+
+
+  fftresult=fft(hanning(noofoutputs)*cwf, /double, /inverse)
+  ; fftresult=fft(cwf, /double, /inverse)
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+      plot, frequ,fftresultIII, /ylog, xrange=[fromenerg,toenerg], xstyle=1,title="K.H frame alpha=6.6"
+
+      finalspec(*,16)=fftresultIII
+      finalspeconlyeven(*,16)=fftresultIII
+
+
+      ;; and now the correlation with the excited state
+
+  fftresult=fft(hanning(noofoutputs)*cwfex, /double, /inverse)
+
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+  oplot, frequ,fftresultIII, color=30
+ 
+
+      finalspeconlyodd(*,16)=fftresultIII
+      finalspec(*,16)=finalspec(*,16)+fftresultIII
+
+
+
+					
+
+					
+
+
+
+t=tab18(0,*);
+a=tab18(1,*);
+b=tab18(2,*);
+aa=tab18(3,*);
+bb=tab18(4,*);
+
+
+cwf=dcomplex(a,b)
+cwfex=dcomplex(aa,bb)
+
+  ;; plot, t,a
+
+
+  fftresult=fft(hanning(noofoutputs)*cwf, /double, /inverse)
+  ; fftresult=fft(cwf, /double, /inverse)
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+      plot, frequ,fftresultIII, /ylog, xrange=[fromenerg,toenerg], xstyle=1,title="K.H frame alpha=7"
+
+      finalspec(*,18)=fftresultIII
+      finalspeconlyeven(*,18)=fftresultIII
+
+
+      ;; and now the correlation with the excited state
+
+  fftresult=fft(hanning(noofoutputs)*cwfex, /double, /inverse)
+
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+  oplot, frequ,fftresultIII, color=30
+ 
+
+      finalspeconlyodd(*,18)=fftresultIII
+      finalspec(*,18)=finalspec(*,18)+fftresultIII
+
+
+
+
+
+
+t=tab19(0,*);
+a=tab19(1,*);
+b=tab19(2,*);
+aa=tab19(3,*);
+bb=tab19(4,*);
+
+
+cwf=dcomplex(a,b)
+cwfex=dcomplex(aa,bb)
+
+  ;; plot, t,a
+
+
+  fftresult=fft(hanning(noofoutputs)*cwf, /double, /inverse)
+  ; fftresult=fft(cwf, /double, /inverse)
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+      plot, frequ,fftresultIII, /ylog, xrange=[fromenerg,toenerg], xstyle=1,title="K.H frame alpha=7.4"
+
+      finalspec(*,19)=fftresultIII
+      finalspeconlyeven(*,19)=fftresultIII
+
+
+      ;; and now the correlation with the excited state
+
+  fftresult=fft(hanning(noofoutputs)*cwfex, /double, /inverse)
+
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+  oplot, frequ,fftresultIII, color=30
+ 
+
+      finalspeconlyodd(*,19)=fftresultIII
+      finalspec(*,19)=finalspec(*,19)+fftresultIII
+
+
+
+	
+
+t=tab20(0,*);
+a=tab20(1,*);
+b=tab20(2,*);
+aa=tab20(3,*);
+bb=tab20(4,*);
+
+
+cwf=dcomplex(a,b)
+cwfex=dcomplex(aa,bb)
+
+  ;; plot, t,a
+
+
+  fftresult=fft(hanning(noofoutputs)*cwf, /double, /inverse)
+  ; fftresult=fft(cwf, /double, /inverse)
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+      plot, frequ,fftresultIII, /ylog, xrange=[fromenerg,toenerg], xstyle=1,title="K.H frame alpha=7.8"
+
+      finalspec(*,20)=fftresultIII
+      finalspeconlyeven(*,20)=fftresultIII
+
+
+      ;; and now the correlation with the excited state
+
+  fftresult=fft(hanning(noofoutputs)*cwfex, /double, /inverse)
+
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+  oplot, frequ,fftresultIII, color=30
+ 
+
+      finalspeconlyodd(*,20)=fftresultIII
+      finalspec(*,20)=finalspec(*,20)+fftresultIII
+
+
+
+
+
+t=tab21(0,*);
+a=tab21(1,*);
+b=tab21(2,*);
+aa=tab21(3,*);
+bb=tab21(4,*);
+
+
+cwf=dcomplex(a,b)
+cwfex=dcomplex(aa,bb)
+
+  ;; plot, t,a
+
+
+  fftresult=fft(hanning(noofoutputs)*cwf, /double, /inverse)
+  ; fftresult=fft(cwf, /double, /inverse)
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+      plot, frequ,fftresultIII, /ylog, xrange=[fromenerg,toenerg], xstyle=1,title="K.H frame alpha=8.2"
+
+      finalspec(*,21)=fftresultIII
+      finalspeconlyeven(*,21)=fftresultIII
+
+
+      ;; and now the correlation with the excited state
+
+  fftresult=fft(hanning(noofoutputs)*cwfex, /double, /inverse)
+
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+  oplot, frequ,fftresultIII, color=30
+ 
+
+      finalspeconlyodd(*,21)=fftresultIII
+      finalspec(*,21)=finalspec(*,21)+fftresultIII
+
+
+
+
+
+t=tab22(0,*);
+a=tab22(1,*);
+b=tab22(2,*);
+aa=tab22(3,*);
+bb=tab22(4,*);
+
+
+cwf=dcomplex(a,b)
+cwfex=dcomplex(aa,bb)
+
+  ;; plot, t,a
+
+
+  fftresult=fft(hanning(noofoutputs)*cwf, /double, /inverse)
+  ; fftresult=fft(cwf, /double, /inverse)
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+      plot, frequ,fftresultIII, /ylog, xrange=[fromenerg,toenerg], xstyle=1,title="K.H frame alpha=8.6"
+
+      finalspec(*,22)=fftresultIII
+      finalspeconlyeven(*,22)=fftresultIII
+
+
+      ;; and now the correlation with the excited state
+
+  fftresult=fft(hanning(noofoutputs)*cwfex, /double, /inverse)
+
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+  oplot, frequ,fftresultIII, color=30
+ 
+
+      finalspeconlyodd(*,22)=fftresultIII
+      finalspec(*,22)=finalspec(*,22)+fftresultIII
+
+
+
+
+
+
+
+
+t=tab23(0,*);
+a=tab23(1,*);
+b=tab23(2,*);
+aa=tab23(3,*);
+bb=tab23(4,*);
+
+
+cwf=dcomplex(a,b)
+cwfex=dcomplex(aa,bb)
+
+  ;; plot, t,a
+
+
+  fftresult=fft(hanning(noofoutputs)*cwf, /double, /inverse)
+  ; fftresult=fft(cwf, /double, /inverse)
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+      plot, frequ,fftresultIII, /ylog, xrange=[fromenerg,toenerg], xstyle=1,title="K.H frame alpha=9"
+
+      finalspec(*,23)=fftresultIII
+      finalspeconlyeven(*,23)=fftresultIII
+
+
+      ;; and now the correlation with the excited state
+
+  fftresult=fft(hanning(noofoutputs)*cwfex, /double, /inverse)
+
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+  oplot, frequ,fftresultIII, color=30
+ 
+
+      finalspeconlyodd(*,23)=fftresultIII
+      finalspec(*,23)=finalspec(*,23)+fftresultIII
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+t=tab24(0,*);
+a=tab24(1,*);
+b=tab24(2,*);
+aa=tab24(3,*);
+bb=tab24(4,*);
+
+
+cwf=dcomplex(a,b)
+cwfex=dcomplex(aa,bb)
+
+  ;; plot, t,a
+
+
+  fftresult=fft(hanning(noofoutputs)*cwf, /double, /inverse)
+  ; fftresult=fft(cwf, /double, /inverse)
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+      plot, frequ,fftresultIII, /ylog, xrange=[fromenerg,toenerg], xstyle=1,title="K.H frame alpha=9.4"
+
+      finalspec(*,24)=fftresultIII
+      finalspeconlyeven(*,24)=fftresultIII
+
+
+      ;; and now the correlation with the excited state
+
+  fftresult=fft(hanning(noofoutputs)*cwfex, /double, /inverse)
+
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+  oplot, frequ,fftresultIII, color=30
+ 
+
+      finalspeconlyodd(*,24)=fftresultIII
+      finalspec(*,24)=finalspec(*,24)+fftresultIII
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+t=tab25(0,*);
+a=tab25(1,*);
+b=tab25(2,*);
+aa=tab25(3,*);
+bb=tab25(4,*);
+
+
+cwf=dcomplex(a,b)
+cwfex=dcomplex(aa,bb)
+
+  ;; plot, t,a
+
+
+  fftresult=fft(hanning(noofoutputs)*cwf, /double, /inverse)
+  ; fftresult=fft(cwf, /double, /inverse)
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+      plot, frequ,fftresultIII, /ylog, xrange=[fromenerg,toenerg], xstyle=1,title="K.H frame alpha=9.8"
+
+      finalspec(*,25)=fftresultIII
+      finalspeconlyeven(*,25)=fftresultIII
+
+
+      ;; and now the correlation with the excited state
+
+  fftresult=fft(hanning(noofoutputs)*cwfex, /double, /inverse)
+
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+  oplot, frequ,fftresultIII, color=30
+ 
+
+      finalspeconlyodd(*,25)=fftresultIII
+      finalspec(*,25)=finalspec(*,25)+fftresultIII
+
+
+
+
+
+
+
+
+t=tab26(0,*);
+a=tab26(1,*);
+b=tab26(2,*);
+aa=tab26(3,*);
+bb=tab26(4,*);
+
+
+cwf=dcomplex(a,b)
+cwfex=dcomplex(aa,bb)
+
+  ;; plot, t,a
+
+
+  fftresult=fft(hanning(noofoutputs)*cwf, /double, /inverse)
+  ; fftresult=fft(cwf, /double, /inverse)
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+      plot, frequ,fftresultIII, /ylog, xrange=[fromenerg,toenerg], xstyle=1,title="K.H frame alpha=10.2"
+
+      finalspec(*,26)=fftresultIII
+      finalspeconlyeven(*,26)=fftresultIII
+
+
+      ;; and now the correlation with the excited state
+
+  fftresult=fft(hanning(noofoutputs)*cwfex, /double, /inverse)
+
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+  oplot, frequ,fftresultIII, color=30
+ 
+
+      finalspeconlyodd(*,26)=fftresultIII
+      finalspec(*,26)=finalspec(*,26)+fftresultIII
+
+
+
+					    
+
+
+
+
+
+
+
+
+t=tab27(0,*);
+a=tab27(1,*);
+b=tab27(2,*);
+aa=tab27(3,*);
+bb=tab27(4,*);
+
+
+cwf=dcomplex(a,b)
+cwfex=dcomplex(aa,bb)
+
+  ;; plot, t,a
+
+
+  fftresult=fft(hanning(noofoutputs)*cwf, /double, /inverse)
+  ; fftresult=fft(cwf, /double, /inverse)
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+      plot, frequ,fftresultIII, /ylog, xrange=[fromenerg,toenerg], xstyle=1,title="K.H frame alpha=10.6"
+
+      finalspec(*,27)=fftresultIII
+      finalspeconlyeven(*,27)=fftresultIII
+
+
+      ;; and now the correlation with the excited state
+
+  fftresult=fft(hanning(noofoutputs)*cwfex, /double, /inverse)
+
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+  oplot, frequ,fftresultIII, color=30
+ 
+
+      finalspeconlyodd(*,27)=fftresultIII
+      finalspec(*,27)=finalspec(*,27)+fftresultIII
+
+
+
+					    
+
+
+
+
+
+
+
+
+
+t=tab28(0,*);
+a=tab28(1,*);
+b=tab28(2,*);
+aa=tab28(3,*);
+bb=tab28(4,*);
+
+
+cwf=dcomplex(a,b)
+cwfex=dcomplex(aa,bb)
+
+  ;; plot, t,a
+
+
+  fftresult=fft(hanning(noofoutputs)*cwf, /double, /inverse)
+  ; fftresult=fft(cwf, /double, /inverse)
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+      plot, frequ,fftresultIII, /ylog, xrange=[fromenerg,toenerg], xstyle=1,title="K.H frame alpha=11"
+
+      finalspec(*,28)=fftresultIII
+      finalspeconlyeven(*,28)=fftresultIII
+
+
+      ;; and now the correlation with the excited state
+
+  fftresult=fft(hanning(noofoutputs)*cwfex, /double, /inverse)
+
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+  oplot, frequ,fftresultIII, color=30
+ 
+
+      finalspeconlyodd(*,28)=fftresultIII
+      finalspec(*,28)=finalspec(*,28)+fftresultIII
+
+
+
+					    
+
+
+
+
+
+
+
+
+
+t=tab29(0,*);
+a=tab29(1,*);
+b=tab29(2,*);
+aa=tab29(3,*);
+bb=tab29(4,*);
+
+
+cwf=dcomplex(a,b)
+cwfex=dcomplex(aa,bb)
+
+  ;; plot, t,a
+
+
+  fftresult=fft(hanning(noofoutputs)*cwf, /double, /inverse)
+  ; fftresult=fft(cwf, /double, /inverse)
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+      plot, frequ,fftresultIII, /ylog, xrange=[fromenerg,toenerg], xstyle=1,title="K.H frame alpha=11.4"
+
+      finalspec(*,29)=fftresultIII
+      finalspeconlyeven(*,29)=fftresultIII
+
+
+      ;; and now the correlation with the excited state
+
+  fftresult=fft(hanning(noofoutputs)*cwfex, /double, /inverse)
+
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+  oplot, frequ,fftresultIII, color=30
+ 
+
+      finalspeconlyodd(*,29)=fftresultIII
+      finalspec(*,29)=finalspec(*,29)+fftresultIII
+
+
+
+					    
+
+
+
+
+
+
+
+
+
+t=tab30(0,*);
+a=tab30(1,*);
+b=tab30(2,*);
+aa=tab30(3,*);
+bb=tab30(4,*);
+
+
+cwf=dcomplex(a,b)
+cwfex=dcomplex(aa,bb)
+
+  ;; plot, t,a
+
+
+  fftresult=fft(hanning(noofoutputs)*cwf, /double, /inverse)
+  ; fftresult=fft(cwf, /double, /inverse)
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+      plot, frequ,fftresultIII, /ylog, xrange=[fromenerg,toenerg], xstyle=1,title="K.H frame alpha=11.8"
+
+      finalspec(*,30)=fftresultIII
+      finalspeconlyeven(*,30)=fftresultIII
+
+
+      ;; and now the correlation with the excited state
+
+  fftresult=fft(hanning(noofoutputs)*cwfex, /double, /inverse)
+
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+  oplot, frequ,fftresultIII, color=30
+ 
+
+      finalspeconlyodd(*,30)=fftresultIII
+      finalspec(*,30)=finalspec(*,30)+fftresultIII
+
+
+
+					    
+
+
+
+
+
+
+
+
+
+t=tab31(0,*);
+a=tab31(1,*);
+b=tab31(2,*);
+aa=tab31(3,*);
+bb=tab31(4,*);
+
+
+cwf=dcomplex(a,b)
+cwfex=dcomplex(aa,bb)
+
+  ;; plot, t,a
+
+
+  fftresult=fft(hanning(noofoutputs)*cwf, /double, /inverse)
+  ; fftresult=fft(cwf, /double, /inverse)
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+      plot, frequ,fftresultIII, /ylog, xrange=[fromenerg,toenerg], xstyle=1,title="K.H frame alpha=12.2"
+
+      finalspec(*,31)=fftresultIII
+      finalspeconlyeven(*,31)=fftresultIII
+
+
+      ;; and now the correlation with the excited state
+
+  fftresult=fft(hanning(noofoutputs)*cwfex, /double, /inverse)
+
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+  oplot, frequ,fftresultIII, color=30
+ 
+
+      finalspeconlyodd(*,31)=fftresultIII
+      finalspec(*,31)=finalspec(*,31)+fftresultIII
+
+
+
+					    
+
+t=tab32(0,*);
+a=tab32(1,*);
+b=tab32(2,*);
+aa=tab32(3,*);
+bb=tab32(4,*);
+
+
+cwf=dcomplex(a,b)
+cwfex=dcomplex(aa,bb)
+
+  ;; plot, t,a
+
+
+  fftresult=fft(hanning(noofoutputs)*cwf, /double, /inverse)
+  ; fftresult=fft(cwf, /double, /inverse)
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+      plot, frequ,fftresultIII, /ylog, xrange=[fromenerg,toenerg], xstyle=1,title="K.H frame alpha=12.6"
+
+      finalspec(*,32)=fftresultIII
+      finalspeconlyeven(*,32)=fftresultIII
+
+
+      ;; and now the correlation with the excited state
+
+  fftresult=fft(hanning(noofoutputs)*cwfex, /double, /inverse)
+
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+  oplot, frequ,fftresultIII, color=30
+ 
+
+      finalspeconlyodd(*,32)=fftresultIII
+      finalspec(*,32)=finalspec(*,32)+fftresultIII
+
+
+
+					    
+
+
+
+
+
+
+
+
+
+
+
+t=tab33(0,*);
+a=tab33(1,*);
+b=tab33(2,*);
+aa=tab33(3,*);
+bb=tab33(4,*);
+
+
+cwf=dcomplex(a,b)
+cwfex=dcomplex(aa,bb)
+
+  ;; plot, t,a
+
+
+  fftresult=fft(hanning(noofoutputs)*cwf, /double, /inverse)
+  ; fftresult=fft(cwf, /double, /inverse)
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+      plot, frequ,fftresultIII, /ylog, xrange=[fromenerg,toenerg], xstyle=1,title="K.H frame alpha=13"
+
+      finalspec(*,33)=fftresultIII
+      finalspeconlyeven(*,33)=fftresultIII
+
+
+      ;; and now the correlation with the excited state
+
+  fftresult=fft(hanning(noofoutputs)*cwfex, /double, /inverse)
+
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+  oplot, frequ,fftresultIII, color=30
+ 
+
+      finalspeconlyodd(*,33)=fftresultIII
+      finalspec(*,33)=finalspec(*,33)+fftresultIII
+
+
+
+					    
+
+t=tab34(0,*);
+a=tab34(1,*);
+b=tab34(2,*);
+aa=tab34(3,*);
+bb=tab34(4,*);
+
+
+cwf=dcomplex(a,b)
+cwfex=dcomplex(aa,bb)
+
+  ;; plot, t,a
+
+
+  fftresult=fft(hanning(noofoutputs)*cwf, /double, /inverse)
+  ; fftresult=fft(cwf, /double, /inverse)
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+      plot, frequ,fftresultIII, /ylog, xrange=[fromenerg,toenerg], xstyle=1,title="K.H frame alpha=13.4"
+
+      finalspec(*,34)=fftresultIII
+      finalspeconlyeven(*,34)=fftresultIII
+
+
+      ;; and now the correlation with the excited state
+
+  fftresult=fft(hanning(noofoutputs)*cwfex, /double, /inverse)
+
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+  oplot, frequ,fftresultIII, color=30
+ 
+
+      finalspeconlyodd(*,34)=fftresultIII
+      finalspec(*,34)=finalspec(*,34)+fftresultIII
+
+
+
+					    
+
+t=tab35(0,*);
+a=tab35(1,*);
+b=tab35(2,*);
+aa=tab35(3,*);
+bb=tab35(4,*);
+
+
+cwf=dcomplex(a,b)
+cwfex=dcomplex(aa,bb)
+
+  ;; plot, t,a
+
+
+  fftresult=fft(hanning(noofoutputs)*cwf, /double, /inverse)
+  ; fftresult=fft(cwf, /double, /inverse)
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+      plot, frequ,fftresultIII, /ylog, xrange=[fromenerg,toenerg], xstyle=1,title="K.H frame alpha=13.8"
+
+      finalspec(*,35)=fftresultIII
+      finalspeconlyeven(*,35)=fftresultIII
+
+
+      ;; and now the correlation with the excited state
+
+  fftresult=fft(hanning(noofoutputs)*cwfex, /double, /inverse)
+
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+  oplot, frequ,fftresultIII, color=30
+ 
+
+      finalspeconlyodd(*,35)=fftresultIII
+      finalspec(*,35)=finalspec(*,35)+fftresultIII
+
+
+
+					    
+
+t=tab36(0,*);
+a=tab36(1,*);
+b=tab36(2,*);
+aa=tab36(3,*);
+bb=tab36(4,*);
+
+
+cwf=dcomplex(a,b)
+cwfex=dcomplex(aa,bb)
+
+  ;; plot, t,a
+
+
+  fftresult=fft(hanning(noofoutputs)*cwf, /double, /inverse)
+  ; fftresult=fft(cwf, /double, /inverse)
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+      plot, frequ,fftresultIII, /ylog, xrange=[fromenerg,toenerg], xstyle=1,title="K.H frame alpha=14.2"
+
+      finalspec(*,36)=fftresultIII
+      finalspeconlyeven(*,36)=fftresultIII
+
+
+      ;; and now the correlation with the excited state
+
+  fftresult=fft(hanning(noofoutputs)*cwfex, /double, /inverse)
+
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+  oplot, frequ,fftresultIII, color=30
+ 
+
+      finalspeconlyodd(*,36)=fftresultIII
+      finalspec(*,36)=finalspec(*,36)+fftresultIII
+
+
+
+					    
+
+t=tab37(0,*);
+a=tab37(1,*);
+b=tab37(2,*);
+aa=tab37(3,*);
+bb=tab37(4,*);
+
+
+cwf=dcomplex(a,b)
+cwfex=dcomplex(aa,bb)
+
+  ;; plot, t,a
+
+
+  fftresult=fft(hanning(noofoutputs)*cwf, /double, /inverse)
+  ; fftresult=fft(cwf, /double, /inverse)
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+      plot, frequ,fftresultIII, /ylog, xrange=[fromenerg,toenerg], xstyle=1,title="K.H frame alpha=14.6"
+
+      finalspec(*,37)=fftresultIII
+      finalspeconlyeven(*,37)=fftresultIII
+
+
+      ;; and now the correlation with the excited state
+
+  fftresult=fft(hanning(noofoutputs)*cwfex, /double, /inverse)
+
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+  oplot, frequ,fftresultIII, color=30
+ 
+
+      finalspeconlyodd(*,37)=fftresultIII
+      finalspec(*,37)=finalspec(*,37)+fftresultIII
+
+
+
+					    
+
+t=tab38(0,*);
+a=tab38(1,*);
+b=tab38(2,*);
+aa=tab38(3,*);
+bb=tab38(4,*);
+
+
+cwf=dcomplex(a,b)
+cwfex=dcomplex(aa,bb)
+
+  ;; plot, t,a
+
+
+  fftresult=fft(hanning(noofoutputs)*cwf, /double, /inverse)
+  ; fftresult=fft(cwf, /double, /inverse)
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+      plot, frequ,fftresultIII, /ylog, xrange=[fromenerg,toenerg], xstyle=1,title="K.H frame alpha=15"
+
+      finalspec(*,38)=fftresultIII
+      finalspeconlyeven(*,38)=fftresultIII
+
+
+      ;; and now the correlation with the excited state
+
+  fftresult=fft(hanning(noofoutputs)*cwfex, /double, /inverse)
+
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+  oplot, frequ,fftresultIII, color=30
+ 
+
+      finalspeconlyodd(*,38)=fftresultIII
+      finalspec(*,38)=finalspec(*,38)+fftresultIII
+
+
+
+					    
+
+
+					    
+
+t=tab39(0,*);
+a=tab39(1,*);
+b=tab39(2,*);
+aa=tab39(3,*);
+bb=tab39(4,*);
+
+
+cwf=dcomplex(a,b)
+cwfex=dcomplex(aa,bb)
+
+  ;; plot, t,a
+
+
+  fftresult=fft(hanning(noofoutputs)*cwf, /double, /inverse)
+  ; fftresult=fft(cwf, /double, /inverse)
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+      plot, frequ,fftresultIII, /ylog, xrange=[fromenerg,toenerg], xstyle=1,title="K.H frame alpha=15.4"
+
+      finalspec(*,39)=fftresultIII
+      finalspeconlyeven(*,39)=fftresultIII
+
+
+      ;; and now the correlation with the excited state
+
+  fftresult=fft(hanning(noofoutputs)*cwfex, /double, /inverse)
+
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+  oplot, frequ,fftresultIII, color=30
+ 
+
+      finalspeconlyodd(*,39)=fftresultIII
+      finalspec(*,39)=finalspec(*,39)+fftresultIII
+
+
+
+					    
+
+
+
+
+
+					    
+
+t=tab40(0,*);
+a=tab40(1,*);
+b=tab40(2,*);
+aa=tab40(3,*);
+bb=tab40(4,*);
+
+
+cwf=dcomplex(a,b)
+cwfex=dcomplex(aa,bb)
+
+  ;; plot, t,a
+
+
+  fftresult=fft(hanning(noofoutputs)*cwf, /double, /inverse)
+  ; fftresult=fft(cwf, /double, /inverse)
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+      plot, frequ,fftresultIII, /ylog, xrange=[fromenerg,toenerg], xstyle=1,title="K.H frame alpha=15.8"
+
+      finalspec(*,40)=fftresultIII
+      finalspeconlyeven(*,40)=fftresultIII
+
+
+      ;; and now the correlation with the excited state
+
+  fftresult=fft(hanning(noofoutputs)*cwfex, /double, /inverse)
+
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+  oplot, frequ,fftresultIII, color=30
+ 
+
+      finalspeconlyodd(*,40)=fftresultIII
+      finalspec(*,40)=finalspec(*,40)+fftresultIII
+
+
+
+					    
+
+
+
+
+
+					    
+
+t=tab41(0,*);
+a=tab41(1,*);
+b=tab41(2,*);
+aa=tab41(3,*);
+bb=tab41(4,*);
+
+
+cwf=dcomplex(a,b)
+cwfex=dcomplex(aa,bb)
+
+  ;; plot, t,a
+
+
+  fftresult=fft(hanning(noofoutputs)*cwf, /double, /inverse)
+  ; fftresult=fft(cwf, /double, /inverse)
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+      plot, frequ,fftresultIII, /ylog, xrange=[fromenerg,toenerg], xstyle=1,title="K.H frame alpha=16.2"
+
+      finalspec(*,41)=fftresultIII
+      finalspeconlyeven(*,41)=fftresultIII
+
+
+      ;; and now the correlation with the excited state
+
+  fftresult=fft(hanning(noofoutputs)*cwfex, /double, /inverse)
+
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+  oplot, frequ,fftresultIII, color=30
+ 
+
+      finalspeconlyodd(*,41)=fftresultIII
+      finalspec(*,41)=finalspec(*,41)+fftresultIII
+
+
+
+					    
+
+
+
+
+
+					    
+
+t=tab42(0,*);
+a=tab42(1,*);
+b=tab42(2,*);
+aa=tab42(3,*);
+bb=tab42(4,*);
+
+
+cwf=dcomplex(a,b)
+cwfex=dcomplex(aa,bb)
+
+  ;; plot, t,a
+
+
+  fftresult=fft(hanning(noofoutputs)*cwf, /double, /inverse)
+  ; fftresult=fft(cwf, /double, /inverse)
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+      plot, frequ,fftresultIII, /ylog, xrange=[fromenerg,toenerg], xstyle=1,title="K.H frame alpha=16.6"
+
+      finalspec(*,42)=fftresultIII
+      finalspeconlyeven(*,42)=fftresultIII
+
+
+      ;; and now the correlation with the excited state
+
+  fftresult=fft(hanning(noofoutputs)*cwfex, /double, /inverse)
+
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+  oplot, frequ,fftresultIII, color=30
+ 
+
+      finalspeconlyodd(*,42)=fftresultIII
+      finalspec(*,42)=finalspec(*,42)+fftresultIII
+
+
+
+					    
+
+
+
+
+
+					    
+
+t=tab43(0,*);
+a=tab43(1,*);
+b=tab43(2,*);
+aa=tab43(3,*);
+bb=tab43(4,*);
+
+
+cwf=dcomplex(a,b)
+cwfex=dcomplex(aa,bb)
+
+  ;; plot, t,a
+
+
+  fftresult=fft(hanning(noofoutputs)*cwf, /double, /inverse)
+  ; fftresult=fft(cwf, /double, /inverse)
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+      plot, frequ,fftresultIII, /ylog, xrange=[fromenerg,toenerg], xstyle=1,title="K.H frame alpha=17"
+
+      finalspec(*,43)=fftresultIII
+      finalspeconlyeven(*,43)=fftresultIII
+
+
+      ;; and now the correlation with the excited state
+
+  fftresult=fft(hanning(noofoutputs)*cwfex, /double, /inverse)
+
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+  oplot, frequ,fftresultIII, color=30
+ 
+
+      finalspeconlyodd(*,43)=fftresultIII
+      finalspec(*,43)=finalspec(*,43)+fftresultIII
+
+
+
+					    
+
+
+
+
+					    
+
+t=tab44(0,*);
+a=tab44(1,*);
+b=tab44(2,*);
+aa=tab44(3,*);
+bb=tab44(4,*);
+
+
+cwf=dcomplex(a,b)
+cwfex=dcomplex(aa,bb)
+
+  ;; plot, t,a
+
+
+  fftresult=fft(hanning(noofoutputs)*cwf, /double, /inverse)
+  ; fftresult=fft(cwf, /double, /inverse)
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+      plot, frequ,fftresultIII, /ylog, xrange=[fromenerg,toenerg], xstyle=1,title="K.H frame alpha=17.4"
+
+      finalspec(*,44)=fftresultIII
+      finalspeconlyeven(*,44)=fftresultIII
+
+
+      ;; and now the correlation with the excited state
+
+  fftresult=fft(hanning(noofoutputs)*cwfex, /double, /inverse)
+
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+  oplot, frequ,fftresultIII, color=30
+ 
+
+      finalspeconlyodd(*,44)=fftresultIII
+      finalspec(*,44)=finalspec(*,44)+fftresultIII
+
+
+
+					    
+
+
+
+
+					    
+
+t=tab45(0,*);
+a=tab45(1,*);
+b=tab45(2,*);
+aa=tab45(3,*);
+bb=tab45(4,*);
+
+
+cwf=dcomplex(a,b)
+cwfex=dcomplex(aa,bb)
+
+  ;; plot, t,a
+
+
+  fftresult=fft(hanning(noofoutputs)*cwf, /double, /inverse)
+  ; fftresult=fft(cwf, /double, /inverse)
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+      plot, frequ,fftresultIII, /ylog, xrange=[fromenerg,toenerg], xstyle=1,title="K.H frame alpha=17.8"
+
+      finalspec(*,45)=fftresultIII
+      finalspeconlyeven(*,45)=fftresultIII
+
+
+      ;; and now the correlation with the excited state
+
+  fftresult=fft(hanning(noofoutputs)*cwfex, /double, /inverse)
+
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+  oplot, frequ,fftresultIII, color=30
+ 
+
+      finalspeconlyodd(*,45)=fftresultIII
+      finalspec(*,45)=finalspec(*,45)+fftresultIII
+
+
+
+					    
+
+
+
+
+					    
+
+t=tab46(0,*);
+a=tab46(1,*);
+b=tab46(2,*);
+aa=tab46(3,*);
+bb=tab46(4,*);
+
+
+cwf=dcomplex(a,b)
+cwfex=dcomplex(aa,bb)
+
+  ;; plot, t,a
+
+
+  fftresult=fft(hanning(noofoutputs)*cwf, /double, /inverse)
+  ; fftresult=fft(cwf, /double, /inverse)
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+      plot, frequ,fftresultIII, /ylog, xrange=[fromenerg,toenerg], xstyle=1,title="K.H frame alpha=18.2"
+
+      finalspec(*,46)=fftresultIII
+      finalspeconlyeven(*,46)=fftresultIII
+
+
+      ;; and now the correlation with the excited state
+
+  fftresult=fft(hanning(noofoutputs)*cwfex, /double, /inverse)
+
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+  oplot, frequ,fftresultIII, color=30
+ 
+
+      finalspeconlyodd(*,46)=fftresultIII
+      finalspec(*,46)=finalspec(*,46)+fftresultIII
+
+
+
+					    
+
+					    
+
+t=tab47(0,*);
+a=tab47(1,*);
+b=tab47(2,*);
+aa=tab47(3,*);
+bb=tab47(4,*);
+
+
+cwf=dcomplex(a,b)
+cwfex=dcomplex(aa,bb)
+
+  ;; plot, t,a
+
+
+  fftresult=fft(hanning(noofoutputs)*cwf, /double, /inverse)
+  ; fftresult=fft(cwf, /double, /inverse)
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+      plot, frequ,fftresultIII, /ylog, xrange=[fromenerg,toenerg], xstyle=1,title="K.H frame alpha=18.6"
+
+      finalspec(*,47)=fftresultIII
+      finalspeconlyeven(*,47)=fftresultIII
+
+
+      ;; and now the correlation with the excited state
+
+  fftresult=fft(hanning(noofoutputs)*cwfex, /double, /inverse)
+
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+  oplot, frequ,fftresultIII, color=30
+ 
+
+      finalspeconlyodd(*,47)=fftresultIII
+      finalspec(*,47)=finalspec(*,47)+fftresultIII
+
+					    
+
+t=tab48(0,*);
+a=tab48(1,*);
+b=tab48(2,*);
+aa=tab48(3,*);
+bb=tab48(4,*);
+
+
+cwf=dcomplex(a,b)
+cwfex=dcomplex(aa,bb)
+
+  ;; plot, t,a
+
+
+  fftresult=fft(hanning(noofoutputs)*cwf, /double, /inverse)
+  ; fftresult=fft(cwf, /double, /inverse)
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+      plot, frequ,fftresultIII, /ylog, xrange=[fromenerg,toenerg], xstyle=1,title="K.H frame alpha=19"
+
+      finalspec(*,48)=fftresultIII
+      finalspeconlyeven(*,48)=fftresultIII
+
+
+      ;; and now the correlation with the excited state
+
+  fftresult=fft(hanning(noofoutputs)*cwfex, /double, /inverse)
+
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+  oplot, frequ,fftresultIII, color=30
+ 
+
+      finalspeconlyodd(*,48)=fftresultIII
+      finalspec(*,48)=finalspec(*,48)+fftresultIII
+
+					    
+
+t=tab49(0,*);
+a=tab49(1,*);
+b=tab49(2,*);
+aa=tab49(3,*);
+bb=tab49(4,*);
+
+
+cwf=dcomplex(a,b)
+cwfex=dcomplex(aa,bb)
+
+  ;; plot, t,a
+
+
+  fftresult=fft(hanning(noofoutputs)*cwf, /double, /inverse)
+  ; fftresult=fft(cwf, /double, /inverse)
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+      plot, frequ,fftresultIII, /ylog, xrange=[fromenerg,toenerg], xstyle=1,title="K.H frame alpha=19.4"
+
+      finalspec(*,49)=fftresultIII
+      finalspeconlyeven(*,49)=fftresultIII
+
+
+      ;; and now the correlation with the excited state
+
+  fftresult=fft(hanning(noofoutputs)*cwfex, /double, /inverse)
+
+
+fftresultII=fftresult*conj(fftresult)
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+
+fftresultIII=dblarr(noofoutputs)
+
+fftresultIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+fftresultIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+
+  oplot, frequ,fftresultIII, color=30
+ 
+
+      finalspeconlyodd(*,49)=fftresultIII
+      finalspec(*,49)=finalspec(*,49)+fftresultIII
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+maxfinalspec=max(finalspec)
+maxfinalspeconlyodd=max(finalspeconlyodd)
+maxfinalspeconlyeven=max(finalspeconlyeven)
+
+finalspec=finalspec/maxfinalspec
+finalspeconlyodd=finalspeconlyodd/maxfinalspeconlyodd
+finalspeconlyeven=finalspeconlyeven/maxfinalspeconlyeven
+
+maxalogfinalspec=max(alog10(finalspec));
+  orderofmagn=4
+  levelsforlogfinalspec=lindgen(noofcolors)
+  levelsforlogfinalspec=levelsforlogfinalspec/(1.0*(noofcolors-1))
+  levelsforlogfinalspec=maxalogfinalspec-orderofmagn+orderofmagn*levelsforlogfinalspec
+
+
+    contour, transpose(alog10(finalspec)),alphahat,frequ, levels=levelsforlogfinalspec, c_colors=colors, /fill, /closed,pos=[0.15,0.15,0.85,0.98], ytitle='Energy (a.u.)', xtitle='Excursion amplitude (a.u.)', yrange=[fromenerg,toenerg], xstyle=1, ystyle=1
+
+    ;    oplot, alphahat, -0.5-alphahat^2*0.04^2/4.0, thick=3
+           ;  oplot, alphahat, 0.0*alphahat, thick=3
+
+colorbar, ncolors=noofcolors, maxrange=levelsforlogfinalspec(0), minrange=levelsforlogfinalspec(noofcolors-1), position=[0.95,0.15,0.98,0.98], /vertical, format='(D8.2)'
+
+
+
+
+    contour, transpose(alog10(finalspeconlyeven)),alphahat,frequ, levels=levelsforlogfinalspec, c_colors=colors, /fill, /closed,pos=[0.15,0.15,0.85,0.9], ytitle='Energy (a.u.)', xtitle='Excursion amplitude (a.u.)', yrange=[fromenerg,toenerg], xstyle=1, ystyle=1, title='even'
+
+colorbar, ncolors=noofcolors, maxrange=levelsforlogfinalspec(0), minrange=levelsforlogfinalspec(noofcolors-1), position=[0.95,0.15,0.98,0.98], /vertical, format='(D8.2)'
+
+
+    contour, transpose(alog10(finalspeconlyodd)),alphahat,frequ, levels=levelsforlogfinalspec, c_colors=colors, /fill, /closed,pos=[0.15,0.15,0.85,0.9], ytitle='Energy (a.u.)', xtitle='Excursion amplitude (a.u.)', yrange=[fromenerg,toenerg], xstyle=1, ystyle=1, title='odd'
+
+colorbar, ncolors=noofcolors, maxrange=levelsforlogfinalspec(0), minrange=levelsforlogfinalspec(noofcolors-1), position=[0.95,0.15,0.98,0.98], /vertical, format='(D8.2)'
+
+
+
+
+
+
+
+
+
+
+
+					    
+
+
+       
+
+
+
+
+device, /close;
+set_plot, "x";
+end

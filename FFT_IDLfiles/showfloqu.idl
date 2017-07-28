@@ -1,0 +1,171 @@
+!p.font=1;
+!p.charthick=2.0;
+!p.charsize=1.5;
+
+pi=3.1415926;
+imagi=complex(0.0,1.0)
+
+deltay=0.25;
+deltax=0.25;
+noofx=long(400);
+noofy=long(400);
+nooftargetenergs=long(2);
+deltatargetenergs=0.533;
+targetenergnull=-2.238;
+targetenergy=lindgen(nooftargetenergs);
+targetenergy=targetenergy*deltatargetenergs+targetenergnull
+
+nooflines=long(noofx*noofy*nooftargetenergs);
+noofcolumns=long(2);
+nooflines2=long(noofx);
+noofcolors=50;
+loadct, 5, ncolors=noofcolors;
+colors=noofcolors-1-lindgen(noofcolors)
+
+set_plot, "ps";
+device, filename="wfauto_imag.ps", /color, bits=8;
+
+
+x=lindgen(noofx);
+x=x-0.5*noofx;
+x=x*deltax;
+
+y=lindgen(noofy);
+y=y-0.5*noofy;
+y=y*deltay;
+
+
+wfel=complexarr(nooftargetenergs,noofy,noofx);
+wf=complexarr(noofx);
+
+filename='../florian/wfauto_imagground.dat';
+tab=dblarr(noofcolumns,nooflines);
+tab2=dblarr(noofcolumns,nooflines2);
+
+ openr, l, filename, /get_lun;
+ readf, l, tab;
+ close, /all;
+
+
+
+for j=long(0),noofx-1 do begin
+
+for i=long(0),noofy-1 do begin
+for k=long(0),nooftargetenergs-1 do begin
+  wfel(k,i,j)=complex(tab(0,k*noofx*noofy+i*noofx+j),tab(1,k*noofx*noofy+i*noofx+j));
+endfor
+endfor
+endfor
+
+for j=long(0),noofx-1 do begin
+for i=long(0),noofy-1 do begin
+wf(j)=wf(j)+wfel(0,i,j)*deltax
+
+endfor
+endfor
+
+
+prob=(wfel);
+
+
+
+maxalogprob=max((prob))
+
+  orderofmagn=5
+  levelsforlogprob=indgen(noofcolors)
+  levelsforlogprob=levelsforlogprob/(1.0*(noofcolors-1))
+  ;;levelsforlogprob=maxalogprob-orderofmagn+orderofmagn*levelsforlogprob
+ levelsforlogprob=  min(prob)+(maxalogprob-min(prob))*levelsforlogprob
+	         ;; for k=0,nooftargetenergs-1 do begin
+
+
+		     	 contour, (prob(0,*,*)),y,x, levels=levelsforlogprob, c_colors=colors, /fill, /closed,pos=[0.15,0.15,0.85,0.98], ytitle='y (a.u.)',xtitle=-0.882 
+				   
+					   	    colorbar, ncolors=noofcolors, maxrange=levelsforlogprob(0), minrange=levelsforlogprob(noofcolors-1), position=[0.95,0.15,0.98,0.98], /vertical, format='(D8.2)'
+      ;;endfor
+
+;;for k=long(0),nooftargetenergs-1 do begin
+
+
+  ;;normwf=total(abs(wfel(k,*))^2)*deltax
+
+
+  ;;argument=atan(imaginary(wfel(k,*))/real_part(wfel(k,*)))
+
+
+
+  ;;plot, x,real_part(exp(-imagi*argument)*wfel(k,*))/sqrt(normwf), xstyle=1, ystyle=3, title=targetenergy(k)
+  ;;oplot,  x,imaginary(exp(-imagi*argument)*wfel(k,*))/sqrt(normwf)
+;;endfor
+
+
+
+realdftpot=dblarr(noofx);
+realdftpot3=dblarr(noofx);
+
+filename2='../florian/realdftpotauto_imagground.dat';
+
+
+
+ openr, l, filename2, /get_lun;
+ readf, l, tab2;
+ close, /all;
+
+
+
+for j=long(0),noofx-1 do begin
+
+
+
+  realdftpot(j)=complex(tab2(0,j),tab2(1,j));
+endfor
+
+
+
+;;plot,x,realdftpot,xrange=[-10,10] 
+
+
+realdftpot2=dblarr(noofx);
+
+
+filename3='../florian/realdftpotauto_imagground.dat';
+
+
+
+
+ openr, l, filename3, /get_lun;
+ readf, l, tab2;
+ close, /all;
+
+for j=long(0),noofx-1 do begin
+
+
+
+  realdftpot2(j)=complex(tab2(0,j),tab2(1,j));
+endfor
+
+
+
+for j=long(0),noofx/2-4 do begin
+
+realdftpot3(j)=realdftpot2(j)-0.882;
+endfor
+
+
+
+for j=noofx/2-4,noofx/2+4 do begin
+realdftpot3(j)=realdftpot(j)-1.356;
+endfor
+
+for j=noofx/2+4,noofx-1 do begin
+realdftpot3(j)=realdftpot2(j)-0.882;
+endfor
+
+plot,x,wf
+plot,x,realdftpot,xrange=[-8,8],title="Ground state-K.S and auto-ionizing potential" 
+
+oplot,x,realdftpot2,color=10 ;;,xrange=[-10,10],title="Auto-Ionizing state, Helium plus-K.S potential" 
+
+device, /close;
+set_plot, "x";
+end

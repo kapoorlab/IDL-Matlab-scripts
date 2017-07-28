@@ -1,0 +1,107 @@
+!p.font=1;
+!p.charthick=2.0;
+!p.charsize=1.5;
+
+pi=3.1415926;
+
+
+
+wf_output_every=1000; 
+dumpwidth=1;
+deltax=0.1*dumpwidth;
+deltat=0.025;
+noofx=long(1000);
+noofoutputs=long(41);
+
+
+nooflines=long(noofx*noofoutputs);
+noofcolumns=long(2);
+
+noofcolors=50;
+loadct, 5, ncolors=noofcolors;
+colors=noofcolors-1-lindgen(noofcolors)
+
+set_plot, "ps";
+device, filename="wfkhli10.ps", /color, bits=8;
+
+
+x=lindgen(noofx);
+x=x-0.5*noofx;
+x=x*deltax;
+
+
+t=lindgen(noofoutputs);
+t=t*deltat*wf_output_every; 
+
+wfel=complexarr(noofx,noofoutputs);
+prob=dblarr(noofx,noofoutputs);
+
+probleft=complexarr(noofoutputs);
+probright=complexarr(noofoutputs);
+timeshift=0.0
+
+filename='wfkhli10.dat';
+tab=dblarr(noofcolumns,nooflines);
+
+
+ openr, l, filename, /get_lun;
+ readf, l, tab;
+ close, /all;
+
+
+
+
+
+for k=long(0),noofoutputs-1 do begin
+for j=long(0),noofx-1 do begin
+  wfel(j,k)=complex(tab(0,k*noofx+j),tab(1,k*noofx+j));
+endfor
+endfor
+
+
+
+
+elecprob=abs(wfel)^2;
+
+           
+maxelecprob=max(elecprob);
+
+;;for k=long(0),noofoutputs-1 do begin
+    ;;for j=long(0),noofx-1 do begin
+	;;if (elecprob(j,k) LT 1e-10*maxelecprob) then elecprob(j,k)= 1e-10*maxelecprob
+	    ;;endfor
+	    ;;endfor
+
+;;;; elec. prob. "movie"
+
+for k=long(0),noofoutputs-1 do begin
+
+   plot, x,elecprob(*,k), yrange=[1e-10*maxelecprob,maxelecprob], xtitle='x (a.u.)', ytitle='Probability density'
+
+endfor
+
+
+
+  ;;;; elec. prob. vs. space and time
+
+maxalogelecprob=max(alog10(elecprob));
+  orderofmagn=4
+  levelsforlogelecprob=lindgen(noofcolors)
+  levelsforlogelecprob=levelsforlogelecprob/(1.0*(noofcolors-1))
+  levelsforlogelecprob=maxalogelecprob-orderofmagn+orderofmagn*levelsforlogelecprob
+
+
+ contour, alog10(elecprob),x,t, levels=levelsforlogelecprob, c_colors=colors, /fill, /closed,pos=[0.15,0.15,0.85,0.98], xtitle='x (a.u.)', ytitle='t (a.u.)'  
+
+     
+
+colorbar, ncolors=noofcolors, maxrange=levelsforlogelecprob(0), minrange=levelsforlogelecprob(noofcolors-1), position=[0.95,0.15,0.98,0.98], /vertical, format='(D8.2)'
+
+
+
+
+
+
+device, /close;
+set_plot, "x";
+end

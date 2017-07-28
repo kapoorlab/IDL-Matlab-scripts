@@ -1,0 +1,100 @@
+!p.font=1;
+!p.charthick=2.0;
+!p.charsize=1.5;
+
+
+pi=3.1415926;
+
+noofoutputs=long(500000)
+
+fromenerg=-0.5
+toenerg=-0.2
+  
+noofcolors=50;
+loadct, 5, ncolors=noofcolors;
+colors=noofcolors-1-lindgen(noofcolors)
+
+imagi=complex(0.0,1.0)
+
+deltax=0.4;
+noofx=long(400);
+
+
+
+
+
+x=lindgen(noofx);
+x=x-0.5*noofx;
+x=x*deltax;
+
+
+
+
+
+
+
+wf=complexarr(noofx,noofoutputs);
+
+deltat=0.1
+t=lindgen(noofoutputs)
+t=t*deltat
+div=0
+  for i=long(0),noofx-1 do begin
+  div=div+exp(-x(i)*x(i))*deltax
+  endfor
+print,div
+  for k=long(0), noofoutputs-1 do begin
+  for i=long(0),noofx-1 do begin
+  wf(i,k)=(1/div)*exp(-x(i)*x(i))*exp(-imagi*(-0.4*t(k)-imagi*0.0001*t(k)))
+endfor
+endfor
+
+set_plot, "ps";
+device, filename="tmp0.2.ps", /color, bits=8;
+
+
+wf1d=complexarr(noofoutputs)
+  
+ for k=long(0), noofoutputs-1 do begin
+  for i=long(0),noofx-1 do begin
+  wf1d(k)=wf1d(k)+wf(i,k)*deltax
+
+endfor
+endfor
+
+
+
+
+fftresult=fft( wf1d*deltat ,/double,  /inverse)
+  fftresultII=fftresult
+
+frequ=lindgen(noofoutputs)
+frequ=frequ-noofoutputs/2
+
+frequ=(2*3.1415926/(t(noofoutputs-1)-t(0)))*frequ
+
+  
+
+  fftresultIIII=dblarr(noofoutputs)
+
+
+
+  fftresultIIII(noofoutputs/2:noofoutputs-1)=fftresultII(0:noofoutputs/2-1)
+  fftresultIIII(0:noofoutputs/2-1)=fftresultII(noofoutputs/2:noofoutputs-1)
+
+	    plot, frequ,(((fftresultIIII))),  xrange=[fromenerg,toenerg], xstyle=1,title="Energy spectrum"   
+
+
+
+
+
+
+
+  
+
+
+
+
+device, /close;
+set_plot, "x";
+end

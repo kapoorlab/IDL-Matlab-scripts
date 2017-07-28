@@ -1,0 +1,345 @@
+!p.font=0.0;
+!p.charthick=1.0;
+!p.charsize=1.5;
+
+
+pi=3.1415926;
+
+
+set_plot, "ps";
+device, filename="thirteenfive2.ps", /color, bits=8;
+
+noofoutputs=long(80000);
+noofcolumns=long(13)
+
+tab=dblarr(noofcolumns,noofoutputs);
+
+
+fromenerg=0.0
+toenerg=2.2
+
+
+
+filename="wfatgpoilg11.3.dat";
+
+noofcolors=64;
+loadct, 4, ncolors=noofcolors;
+colors=noofcolors-1-lindgen(noofcolors)
+
+
+openr, l, filename, /get_lun;
+readf, l, tab;
+close, /all;
+
+
+
+t=tab(0,*);
+a=tab(1,*);
+b=tab(2,*);
+
+cwf=dcomplex(a,b)
+
+nooftimewindows=long(50)
+  windowwidth=long(19000)  ; must be odd  
+starttimeindex=0
+finaltimeindex=noofoutputs-1-windowwidth
+ finalspec4=dblarr(nooftimewindows,windowwidth) 
+ finalspec3=dblarr(nooftimewindows,windowwidth) 
+   finalspec2=dblarr(nooftimewindows,windowwidth) 
+   finalspec1=dblarr(nooftimewindows,windowwidth) 
+  tarray=dblarr(nooftimewindows)
+
+for  k=long(0),nooftimewindows-1 do begin
+
+  tstartindex=starttimeindex+k*(finaltimeindex-starttimeindex)/(1.0*nooftimewindows);
+  tstart=t(tstartindex);
+
+tarray(k)=tstart;
+
+  tendindex=tstartindex+windowwidth;
+  tend=t(tendindex);
+
+fftresult1=fft(hanning(windowwidth)*cwf(tstartindex:tendindex), /double, /inverse)
+
+fftresultII1=fftresult1*conj(fftresult1)
+
+frequ=lindgen(windowwidth)
+frequ=frequ-windowwidth/2
+
+frequ=(2*3.1415926/(t(tendindex)-t(tstartindex)))*frequ
+
+
+fftresultIII1=dblarr(windowwidth)
+
+fftresultIII1(windowwidth/2:windowwidth-1)=fftresultII1(0:windowwidth/2-1)
+fftresultIII1(0:windowwidth/2-1)=fftresultII1(windowwidth/2:windowwidth-1)
+
+  finalspec1(k,*)= fftresultIII1
+
+endfor
+
+
+  ;--
+
+
+
+
+
+;--   3rd
+tab=dblarr(noofcolumns,noofoutputs);
+filename="wfatgpoilg11.55.dat";
+
+
+
+openr, l, filename, /get_lun;
+readf, l, tab;
+close, /all;
+
+
+
+t=tab(0,*);
+a=tab(1,*);
+b=tab(2,*);
+
+cwf=dcomplex(a,b)
+
+
+
+  tarray=dblarr(nooftimewindows)
+
+for  k=long(0),nooftimewindows-1 do begin
+
+  tstartindex=starttimeindex+k*(finaltimeindex-starttimeindex)/(1.0*nooftimewindows);
+  tstart=t(tstartindex);
+
+tarray(k)=tstart;
+
+  tendindex=tstartindex+windowwidth;
+  tend=t(tendindex);
+
+fftresult2=fft(hanning(windowwidth)*cwf(tstartindex:tendindex), /double, /inverse)
+
+fftresultII2=fftresult2*conj(fftresult2)
+
+frequ=lindgen(windowwidth)
+frequ=frequ-windowwidth/2
+
+frequ=(2*3.1415926/(t(tendindex)-t(tstartindex)))*frequ
+
+
+fftresultIII2=dblarr(windowwidth)
+
+fftresultIII2(windowwidth/2:windowwidth-1)=fftresultII2(0:windowwidth/2-1)
+fftresultIII2(0:windowwidth/2-1)=fftresultII2(windowwidth/2:windowwidth-1)
+
+  finalspec2(k,*)=  fftresultIII2
+
+endfor
+
+
+  ;--
+
+
+;--   3rd
+tab=dblarr(noofcolumns,noofoutputs);
+filename="wfatgpoilg11.8.dat";
+
+
+
+openr, l, filename, /get_lun;
+readf, l, tab;
+close, /all;
+
+
+
+t=tab(0,*);
+a=tab(1,*);
+b=tab(2,*);
+
+cwf=dcomplex(a,b)
+
+
+
+  tarray=dblarr(nooftimewindows)
+
+for  k=long(0),nooftimewindows-1 do begin
+
+  tstartindex=starttimeindex+k*(finaltimeindex-starttimeindex)/(1.0*nooftimewindows);
+  tstart=t(tstartindex);
+
+tarray(k)=tstart;
+
+  tendindex=tstartindex+windowwidth;
+  tend=t(tendindex);
+
+fftresult3=fft(hanning(windowwidth)*cwf(tstartindex:tendindex), /double, /inverse)
+
+fftresultII3=fftresult3*conj(fftresult3)
+
+frequ=lindgen(windowwidth)
+frequ=frequ-windowwidth/2
+
+frequ=(2*3.1415926/(t(tendindex)-t(tstartindex)))*frequ
+
+
+fftresultIII3=dblarr(windowwidth)
+
+fftresultIII3(windowwidth/2:windowwidth-1)=fftresultII3(0:windowwidth/2-1)
+fftresultIII3(0:windowwidth/2-1)=fftresultII3(windowwidth/2:windowwidth-1)
+
+  finalspec3(k,*)=  fftresultIII3
+
+endfor
+
+
+  ;--
+
+
+;--   3rd
+tab=dblarr(noofcolumns,noofoutputs);
+filename="wfatgpoilg13.3.dat";
+
+
+
+openr, l, filename, /get_lun;
+readf, l, tab;
+close, /all;
+
+
+
+t=tab(0,*);
+a=tab(1,*);
+b=tab(2,*);
+
+cwf=dcomplex(a,b)
+
+
+
+  tarray=dblarr(nooftimewindows)
+
+for  k=long(0),nooftimewindows-1 do begin
+
+  tstartindex=starttimeindex+k*(finaltimeindex-starttimeindex)/(1.0*nooftimewindows);
+  tstart=t(tstartindex);
+
+tarray(k)=tstart;
+
+  tendindex=tstartindex+windowwidth;
+  tend=t(tendindex);
+
+fftresult4=fft(hanning(windowwidth)*cwf(tstartindex:tendindex), /double, /inverse)
+
+fftresultII4=fftresult4*conj(fftresult4)
+
+frequ=lindgen(windowwidth)
+frequ=frequ-windowwidth/2
+
+frequ=(2*3.1415926/(t(tendindex)-t(tstartindex)))*frequ
+
+
+fftresultIII4=dblarr(windowwidth)
+
+fftresultIII4(windowwidth/2:windowwidth-1)=fftresultII4(0:windowwidth/2-1)
+fftresultIII4(0:windowwidth/2-1)=fftresultII4(windowwidth/2:windowwidth-1)
+
+  finalspec4(k,*)=  fftresultIII4
+
+endfor
+
+
+  ;--
+
+
+  ;--
+    
+maxfinalspec1=max(finalspec1)
+
+finalspec1=finalspec1;;/max(finalspec1);
+
+maxalogfinalspec1=max(alog10(finalspec1));
+  orderofmagn=5
+  levelsforlogfinalspec1=lindgen(noofcolors)
+  levelsforlogfinalspec1=levelsforlogfinalspec1/(1.0*(noofcolors-1))
+  levelsforlogfinalspec1=maxalogfinalspec1-orderofmagn+orderofmagn*levelsforlogfinalspec1
+
+
+  ;;  contour, alog10(finalspec1),tarray,frequ, levels=levelsforlogfinalspec1, c_colors=colors, /fill, /closed,pos=[0.15,0.15,0.85,0.98], ytitle='Energy (a.u.)', xtitle='Time (a.u.)', yrange=[fromenerg,toenerg], xstyle=1, ystyle=1
+
+
+
+;;colorbar, ncolors=noofcolors, maxrange=levelsforlogfinalspec1(0), minrange=levelsforlogfinalspec1(noofcolors-1), position=[0.95,0.15,0.98,0.98], /vertical, format='(D8.2)'
+
+  
+    
+maxfinalspec2=max(finalspec2)
+
+finalspec2=finalspec2;;/max(finalspec2)
+
+maxalogfinalspec2=max(alog10(finalspec2));
+  orderofmagn=5
+  levelsforlogfinalspec2=lindgen(noofcolors)
+  levelsforlogfinalspec2=levelsforlogfinalspec2/(1.0*(noofcolors-1))
+  levelsforlogfinalspec2=maxalogfinalspec2-orderofmagn+orderofmagn*levelsforlogfinalspec2
+
+
+  
+ ;; contour, alog10(finalspec2),tarray,frequ, levels=levelsforlogfinalspec2, c_colors=colors, /fill, /closed,pos=[0.15,0.15,0.85,0.98], ytitle='Energy (a.u.)', xtitle='Time (a.u.)', yrange=[fromenerg,toenerg], xstyle=1, ystyle=1
+
+
+
+;;colorbar, ncolors=noofcolors, maxrange=levelsforlogfinalspec2(0), minrange=levelsforlogfinalspec2(noofcolors-1), position=[0.95,0.15,0.98,0.98], /vertical, format='(D8.2)'
+
+   
+      
+maxfinalspec3=max(finalspec3)
+
+finalspec3=finalspec3;;/max(finalspec3)
+
+maxalogfinalspec3=max(alog10(finalspec3));
+  orderofmagn=5
+  levelsforlogfinalspec3=lindgen(noofcolors)
+  levelsforlogfinalspec3=levelsforlogfinalspec3/(1.0*(noofcolors-1))
+  levelsforlogfinalspec3=maxalogfinalspec3-orderofmagn+orderofmagn*levelsforlogfinalspec3
+
+
+  
+  ;;contour, alog10(finalspec3),tarray,frequ, levels=levelsforlogfinalspec3, c_colors=colors, /fill, /closed,pos=[0.15,0.15,0.85,0.98], ytitle='Energy (a.u.)', xtitle='Time (a.u.)', yrange=[fromenerg,toenerg], xstyle=1, ystyle=1
+
+
+
+;;colorbar, ncolors=noofcolors, maxrange=levelsforlogfinalspec3(0), minrange=levelsforlogfinalspec3(noofcolors-1), position=[0.95,0.15,0.98,0.98], /vertical, format='(D8.2)'
+
+   
+       
+maxfinalspec4=max(finalspec4)
+
+finalspec4=finalspec4;;/max(finalspec4)
+
+maxalogfinalspec4=max(alog10(finalspec4));
+  orderofmagn=7
+  levelsforlogfinalspec4=lindgen(noofcolors)
+  levelsforlogfinalspec4=levelsforlogfinalspec3/(1.0*(noofcolors-1))
+  levelsforlogfinalspec4=maxalogfinalspec4-orderofmagn+orderofmagn*levelsforlogfinalspec4
+
+
+  
+  ;;contour, alog10(finalspec4),tarray,frequ, levels=levelsforlogfinalspec3, c_colors=colors, /fill, /closed,pos=[0.15,0.15,0.85,0.98], ytitle='Energy (a.u.)', xtitle='Time (a.u.)', yrange=[fromenerg,toenerg], xstyle=1, ystyle=1
+
+
+
+;;colorbar, ncolors=noofcolors, maxrange=levelsforlogfinalspec4(0), minrange=levelsforlogfinalspec4(noofcolors-1), position=[0.95,0.15,0.98,0.98], /vertical, format='(D8.2)'
+
+    
+ 
+ ;; plot, frequ, finalspec1(nooftimewindows-1,*), /ylog, xrange=[fromenerg,toenerg],title="odd photon closing",xtitle="Energy (a.u) (Up=0.3)"
+  ;;plot, frequ, finalspec2(nooftimewindows-1,*), /ylog, xrange=[fromenerg,toenerg],title="odd photon closing",xtitle="Energy (a.u) (Up=0.3)"
+  ;;plot, frequ, finalspec3(nooftimewindows-1,*),/ylog, xrange=[fromenerg,toenerg],title="odd photon closing",xtitle="Energy (a.u) (Up=0.3)"
+   ;;plot, frequ, finalspec4(nooftimewindows-1,*),/ylog, xrange=[fromenerg,toenerg],title="odd photon closing",xtitle="Energy (a.u) (Up=0.3)"
+  
+   plot,frequ,finalspec3(nooftimewindows-1,*),xrange=[1,1.5];;,yrange=[0,0.045];;,title="odd photon closing alpha=12-black, 11-dotted",xtitle="Energy (a.u) (Up=0.23)",yrange=[0,0.003]
+  oplot, frequ, finalspec2(nooftimewindows-1,*),color=15,linestyle=2
+ oplot, frequ, finalspec1(nooftimewindows-1,*),color=35,linestyle=3
+   ;; oplot, frequ, finalspec4(nooftimewindows-1,*),color=55,linestyle=4
+device, /close;
+set_plot, "x";
+end
