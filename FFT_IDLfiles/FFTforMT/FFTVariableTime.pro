@@ -10,16 +10,16 @@ noofcolors=64;
 loadct, 4, ncolors=noofcolors;
 colors=noofcolors-1-lindgen(noofcolors)
 fromenerg=1.0E-5
-toenerg=0.4
+toenerg=0.3
 
 
 
-filename=File_Search("/Users/varunkapoor/Documents/Ines_Fourier/FFT_Varun_Hes1Protein/*.txt");
+filename=File_Search("/Users/varunkapoor/Documents/Ines_Fourier/FFT_Varun_Exp3All/*.txt");
 Print, filename.length;
 
 
 set_plot, "ps";
-device, filename = "/Users/varunkapoor/Documents/Ines_Fourier/FFT_Varun_Hes1Protein/extendedFFT_Hes.ps", /color, bits=8;
+device, filename = "/Users/varunkapoor/Documents/Ines_Fourier/extendedFFT_Exp3.ps", /color, bits=8;
 
 minoutput = 200;
 
@@ -150,7 +150,7 @@ cwfextend = cwfextend/max(cwfextend)
 
 
 
-fftresult=fft(hanning(minoutput)*cwfextend, /double, /inverse)
+fftresult=fft(hanning(minoutput)*cwfextend, /double)
 
 
 
@@ -180,11 +180,15 @@ fftresultIII = fftresultIII/max(fftresultIII);
 
 
 
-pk = peaks(fftresultIII,2)
+pk = peaks(fftresultIII,3)
 
-;;if (pk.length GE 3) then begin
 
-finalspec(*,j)=fftresultIII;
+
+
+  finalspec(*,j)=fftresultIII;
+
+
+
 
 
 finalspecaverage+=(fftresultIII);
@@ -203,10 +207,11 @@ endfor
 
 finalspecaverage = finalspecaverage/filecount;
 
-plot, frequ,finalspecaverage, xrange=[fromenerg,toenerg], xtickinterval = 0.04  , xstyle=1, ystyle=1, /ylog, xtitle = "Frequency (hours)", ytitle = "Amplitude", title = "Averaged Result Hes", XTickFormat='WaveNumberFormat';;, yrange = [1.0E-3, 1.0]
+plot, frequ,finalspecaverage, xrange=[fromenerg,0.5], xtickinterval = 0.04  , xstyle=1, ystyle=1, /ylog, xtitle = "Frequency (hours)", ytitle = "Amplitude", title = "Averaged Result Exp3", XTickFormat='WaveNumberFormat';;, yrange = [1.0E-3, 1.0]
 
+plot, frequ,finalspecaverage, xrange=[0.01,0.4], xtickinterval = 0.04  , xstyle=1, ystyle=1, xtitle = "Frequency (hours)", ytitle = "Amplitude", title = "Averaged Result Exp3 (Linear scale)", XTickFormat='WaveNumberFormat';;, yrange = [1.0E-3, 1.0]
 
-pk = peaks(finalspecaverage,2)
+pk = peaks(finalspecaverage,3)
 pk = pk-(minoutput)/2
 pk = (2*3.1415926/(textend(minoutput -1)-textend(0)))*pk
 
@@ -221,11 +226,20 @@ endfor
 
 
 
+
+
 maxfinalspec = max(finalspec)
 finalspec = finalspec/ maxfinalspec;
+finalsepcnozero = dblarr(minoutput, filecount);
+finalsepcnozero = finalspec[WHERE(finalspec(*) GT 0.01)]
+
+;;cgHistoplot, finalspec, BINSIZE=0.01, /FILL, xtitle = "Time (hours)", ytitle = "Counts", POLYCOLOR=['charcoal', 'dodger blue'], ORIENTATION=[45, -45], yticks=3, XTickFormat='WaveNumberFormat', xrange=[0,0.4], MININPUT = 1.0E-3, xtickinterval = 0.04;
+
+;;cgHistoplot, finalspec, BINSIZE=0.01, /FILL, xtitle = "Time (hours)", ytitle = "Counts", POLYCOLOR=['charcoal', 'dodger blue'], ORIENTATION=[45, -45], yticks=3, XTickFormat='WaveNumberFormat', xrange=[0,0.4], MININPUT = 1.0E-2, xtickinterval = 0.04 ;
+
 
 maxalogfinalspec=max(alog10(finalspec));
-orderofmagn=5
+orderofmagn=8
 levelsforlogfinalspec=lindgen(noofcolors)
 levelsforlogfinalspec=levelsforlogfinalspec/(1.0*(noofcolors-1))
 levelsforlogfinalspec=maxalogfinalspec-orderofmagn+orderofmagn*levelsforlogfinalspec
