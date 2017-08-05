@@ -12,79 +12,43 @@ colors=noofcolors-1-lindgen(noofcolors)
 
 toenerg = 0.3;
 set_plot, "ps";
-device, filename = "/Users/varunkapoor/Documents/Ines_Fourier/FakeCell.ps", /color, bits=8;
+device, filename = "/Users/varunkapoor/Documents/Ines_Fourier/DerivativeModsig.ps", /color, bits=8;
 
 Nsamples = 100;
-noofoutputs = 100;
+noofoutputs = 1000;
 finalspec= dblarr(noofoutputs, Nsamples);
 alphahat=lindgen(Nsamples);
 finalspecaverage= dblarr(noofoutputs);
 
 omega = 0.1 ;
+endomega = 0.2;
+omegatime = dblarr(noofoutputs);
+
+
+
+
+
 increment = 0.01;
 for index = long(0), Nsamples - 1 do begin
 
 
-
-
-
-
-
 t = lindgen(noofoutputs)
-deltat = 10;
+
+deltat = 0.5;
+
 t= t*deltat;
 
 
+k = (endomega - omega) / (noofoutputs*deltat);
 
-
-if (index LT Nsamples/10 - 1) then begin
-omega+=increment;
-
-endif
-
-if (index GT Nsamples/10 && index LT 2 * Nsamples/10 - 1 )then begin
-omega-=increment;
-endif
-if (index GT 2 * Nsamples/10 && index LT 3 * Nsamples/10 - 1 )then begin
-omega+=increment;
-endif
-if (index GT 3 * Nsamples/10 && index LT 4 * Nsamples/10 - 1 )then begin
-omega-=increment;
-endif
-
-if (index GT 4 * Nsamples/10 && index LT 5 * Nsamples/10 - 1 )then begin
-omega+=increment;
-endif
-
-if (index GT 5 * Nsamples/10 && index LT 6 * Nsamples/10 - 1 )then begin
-omega-=increment;
-endif
-
-
-if (index GT 6 * Nsamples/10 && index LT 7 * Nsamples/10 - 1 )then begin
-omega+=increment;
-endif
-
-if (index GT 7 * Nsamples/10 && index LT 8 * Nsamples/10 - 1 )then begin
-omega-=increment;
-endif
-
-if (index GT 8 * Nsamples/10 && index LT 9 * Nsamples/10 - 1 )then begin
-  omega+=increment;
-endif
-
-if (index GT 9 * Nsamples/10 && index LT 10 * Nsamples/10 - 1 )then begin
-  omega-=increment;
-endif
-
-print, omega
 
 ;;Deviation in frequency, between -0.1 and 0.1
 
 
 
+
 ;;Create a wave
-cwf =  (SIN((omega) * t)) + 3;
+cwf =  (SIN((omega + k*t/2) * t));
 
 
 
@@ -92,10 +56,10 @@ cwf =  (SIN((omega) * t)) + 3;
 
 cwfnoise = cwf + RANDOMU(SEED,noofoutputs, POISSON = 1.5);
 
-cwfnoise = cwfnoise/max(cwfnoise);
+cwfnoise = (cwfnoise)/max(cwfnoise);
 ;;plot, t, cwfnoise, title="Cell Intensity "+ STRTRIM(index)
 
-fftresult=fft(hanning(noofoutputs)*cwfnoise, /double, /inverse)
+fftresult=fft(hanning(noofoutputs)*(cwfnoise - mean(cwfnoise)), /double, /inverse)
 
 
 
@@ -137,9 +101,11 @@ endfor
 
 finalspecaverage = finalspecaverage/Nsamples;
 
-plot, frequ,finalspecaverage, xrange=[0,toenerg] , xstyle=1, ystyle=1, /ylog, xtitle = "Frequency ", ytitle = "Amplitude", title = "Fake Cells";;, yrange = [1.0E-3, 1.0]
+plot, frequ,finalspecaverage, xrange=[0,toenerg] , xstyle=1, ystyle=1, /ylog, xtitle = "Frequency(hours) ", ytitle = "Amplitude", XTickFormat='WaveNumberFormat', title = "Simulated Cells";;, yrange = [1.0E-3, 1.0]
+plot, frequ,finalspecaverage, xrange=[0,toenerg] , xstyle=1, ystyle=1, xtitle = "Frequency(hours) ", ytitle = "Amplitude", XTickFormat='WaveNumberFormat', title = "Simulated Cells (linear scale)";;, yrange = [1.0E-3, 1.0]
 
 
+cgHistoplot, finalspecaverage, BINSIZE=0.02, /FILL, xtitle = "Time (hours)", ytitle = "Counts", POLYCOLOR=['charcoal', 'dodger blue'], ORIENTATION=[45, -45], yticks=3, XTickFormat='WaveNumberFormat', xrange=[0,0.4], xtickinterval = 0.04;
 
 
 
@@ -150,16 +116,30 @@ finalspec = finalspec/ maxfinalspec;
 
 
 maxalogfinalspec=max(alog10(finalspec));
-orderofmagn=8
+orderofmagn=5
 levelsforlogfinalspec=lindgen(noofcolors)
 levelsforlogfinalspec=levelsforlogfinalspec/(1.0*(noofcolors-1))
 levelsforlogfinalspec=maxalogfinalspec-orderofmagn+orderofmagn*levelsforlogfinalspec
 
-contour, transpose(alog10(finalspec)),alphahat,frequ, levels=levelsforlogfinalspec, c_colors=colors, /fill, /closed,pos=[0.15,0.15,0.85,0.98], yrange=[0.01,toenerg], xstyle=1, ystyle=1, xtitle = "Cell Number", ytitle= "Time Period";
+contour, transpose(alog10(finalspec)),alphahat,frequ, levels=levelsforlogfinalspec, c_colors=colors, /fill, /closed,pos=[0.15,0.15,0.85,0.98], YTickFormat='WaveNumberFormat', yrange=[0,toenerg], xstyle=1, ystyle=1, xtitle = "Cell Number", ytitle= "Time Period(hours)";
 
 colorbar, ncolors=noofcolors, maxrange=levelsforlogfinalspec(0), minrange=levelsforlogfinalspec(noofcolors-1), position=[0.95,0.15,0.98,0.98], /vertical, format='(D8.2)'
 
 
+
+for i=long(0),Nsamples-1 do begin
+
+
+
+
+
+  oplot, [i,i], [-100,100]
+
+
+
+
+
+endfor
 
 
 
