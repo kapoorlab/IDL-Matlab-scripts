@@ -17,19 +17,19 @@ toenerg=0.31
 ;; Enter the directory path here, where all the txt files for Intensity oscillations are stored
 ;; Example you have a directory /Users/Ines/Desktop/ExperimentOne/*.txt
 ;; the *.txt tell the program to load all the txt files in that directory onto here, remember to replace the comma with decimal places 
-filename=File_Search("/Users/varunkapoor/Documents/Ines_Fourier/FFT_Varun_Exp3All/*.txt");
+filename=File_Search("/Users/varunkapoor/Documents/Ines_Fourier/FFT_Varun_Exp1tracks/*.txt");
 Print, filename.length;
 
 ;; Here the output enviornment is set to postscript and you cna enter the directory and the filename for your results file
 set_plot, "ps";
-device, filename = "/Users/varunkapoor/Documents/Ines_Fourier/derivextendedFFT_Exp3.ps", /color, bits=8;
+device, filename = "/Users/varunkapoor/Documents/Ines_Fourier/meanextendedFFT_Exp1T90.ps", /color, bits=8;
 
 
 
 ;; This is a number to extend short tracks till this value if they are shorter
 ;; The extension is done by extending the last value till this extended end time
 ;; This causes the peak at zero frequency to increase in height but leads to no other artifacts
-minoutput = 200;
+minoutput = 90;
 
 
 
@@ -61,10 +61,11 @@ filecount = filecount + 1;
 
 endfor
 
-textend = dblarr(1,minoutput);
-cwfextend = dblarr(1,minoutput);
+extendedoutput = minoutput+noofoutputs;
 
-cwfderiv = dblarr(1,minoutput);
+textend = dblarr(1,extendedoutput);
+cwfextend = dblarr(1,extendedoutput);
+
 
 finalspecaverage= dblarr(minoutput);
 
@@ -92,7 +93,7 @@ noofcolumns=long(2)
 
 
 
-tab=dblarr(noofcolumns,noofoutputs );
+tab=dblarr(noofcolumns,noofoutputs);
 
 
 
@@ -109,6 +110,8 @@ cwf=tab(1,*);
 deltat = t(1) - t(0);
 
 cwf = cwf/max(cwf);
+
+
 for arrayindex= long(0), cwf.length - 1 do begin
 
 ;; Sometimes your Intensity calues were negative, should never happen but I put them to zero if they do
@@ -120,10 +123,20 @@ endif
 endfor
 
 
-cwfextend(noofoutputs:minoutput - 1) = cwf(noofoutputs - 1);
-cwfextend(0:noofoutputs - 1) = cwf(0:noofoutputs - 1);
 
+if noofoutputs LT minoutput then begin 
+  print, noofoutputs
+cwfextend(0:noofoutputs - 1) = cwf(0:noofoutputs - 1);
+cwfextend(noofoutputs-1:minoutput-1) = cwf(noofoutputs - 1);
 textend(0:noofoutputs - 1) = t(0:noofoutputs - 1);
+endif
+
+if minoutput LT noofoutputs then begin
+  
+  cwfextend = cwf;
+  textend = t;
+endif
+
 
 count = 1;
 for xi = noofoutputs, minoutput - 1  do begin
@@ -140,7 +153,7 @@ endfor
 
 
 ;; Here we are doing the fast fourier transform
-fftresult=fft((cwfextend ), /double)
+fftresult=fft((cwfextend - mean(cwfextend)), /double)
 
 
 
@@ -198,10 +211,10 @@ endfor
 finalspecaverage = finalspecaverage/filecount;
 
 ;; Plotting the average spectra in log scale, notice the \ylog variable
-plot, frequ,finalspecaverage, xrange=[fromenerg,toenerg], xtickinterval = 0.04  , xstyle=1, ystyle=1, /ylog, xtitle = "Frequency (hours)", ytitle = "Amplitude", title = "Averaged Result Exp3", XTickFormat='WaveNumberFormat', yrange = [1.0E-5, 1.0]
+plot, frequ,finalspecaverage, xrange=[fromenerg,toenerg], xtickinterval = 0.04  , xstyle=1, ystyle=1, /ylog, xtitle = "Frequency (hours)", ytitle = "Amplitude", title = "Averaged Result", XTickFormat='WaveNumberFormat', yrange = [1.0E-5, 1.0]
 
 ;; Plotting the average spectra in linear scale
-plot, frequ,finalspecaverage,  xrange=[fromenerg,toenerg], xtickinterval = 0.04  , xstyle=1, ystyle=1, xtitle = "Frequency (hours)", ytitle = "Amplitude", title = "Averaged Result Exp3 (Linear scale)", XTickFormat='WaveNumberFormat';;, yrange = [1.0E-3, 1.0]
+plot, frequ,finalspecaverage,  xrange=[fromenerg,toenerg], xtickinterval = 0.04  , xstyle=1, ystyle=1, xtitle = "Frequency (hours)", ytitle = "Amplitude", title = "Averaged Result (Linear scale)", XTickFormat='WaveNumberFormat';;, yrange = [1.0E-3, 1.0]
 
 
 ;; This part uses the powerful peak estimator to obtain peaks for astronomical spectrum
@@ -228,9 +241,9 @@ finalspec = finalspec/ maxfinalspec;
 finalsepcnozero = dblarr(minoutput, filecount);
 finalsepcnozero = finalspec[WHERE(finalspec(*) GT 0.01)]
 
-cgHistoplot, finalspecaverage, BINSIZE=0.01, /FILL, xtitle = "Time (hours)", ytitle = "Counts", POLYCOLOR=['charcoal', 'dodger blue'], ORIENTATION=[45, -45], yticks=3, XTickFormat='WaveNumberFormat', xrange=[0,0.4], xtickinterval = 0.04, MININPUT= 0.02;
+;;cgHistoplot, finalspecaverage, BINSIZE=0.01, /FILL, xtitle = "Time (hours)", ytitle = "Counts", POLYCOLOR=['charcoal', 'dodger blue'], ORIENTATION=[45, -45], yticks=3, XTickFormat='WaveNumberFormat', xrange=[0,0.4], xtickinterval = 0.04, MININPUT= 0.02;
 
-cgHistoplot, finalspecaverage, BINSIZE=0.05, /FILL, xtitle = "Time (hours)", ytitle = "Counts", POLYCOLOR=['charcoal', 'dodger blue'], ORIENTATION=[45, -45], yticks=3, XTickFormat='WaveNumberFormat', xrange=[0,0.4], xtickinterval = 0.04, MININPUT= 0.02;
+;;cgHistoplot, finalspecaverage, BINSIZE=0.05, /FILL, xtitle = "Time (hours)", ytitle = "Counts", POLYCOLOR=['charcoal', 'dodger blue'], ORIENTATION=[45, -45], yticks=3, XTickFormat='WaveNumberFormat', xrange=[0,0.4], xtickinterval = 0.04, MININPUT= 0.02;
 
 
 maxalogfinalspec=max(alog10(finalspec));
